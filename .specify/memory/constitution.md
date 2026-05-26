@@ -1,50 +1,77 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report
+Version change: template → 1.0.0
+Modified principles: all placeholder principles replaced with project-specific rules
+Added sections: Content & Data Standards; Development & Quality Gates
+Removed sections: placeholder template comments and tokens
+Templates requiring updates: none
+Deferred items: none
+-->
+# My Vietnam Quiz App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Source-First Question Bank
+Every quiz item MUST come from a maintained canonical question bank for the 270-question
+curriculum. Each question, answer set, and explanation MUST be traceable to an approved
+source or review note. The app MUST never invent, paraphrase beyond meaning, or silently
+alter the academic content.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Deterministic Assessment
+Scoring, answer validation, progress calculation, and completion results MUST be
+deterministic for the same input state. The app MUST clearly distinguish between a user's
+selected answer, the correct answer, and any post-answer explanation. Randomization may be
+used for practice flows only when it does not change correctness or scoring.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Learning-First UX
+The product MUST optimize for exam practice and retention, not entertainment. Each feature
+MUST support fast answering, immediate feedback, review of mistakes, and clear progress
+signals. The default experience MUST work well on mobile screens and in low-friction study
+sessions.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Accessible Vietnamese-First Experience
+Primary content MUST be understandable in Vietnamese and readable on small screens. The UI
+MUST maintain strong contrast, touch-friendly targets, keyboard accessibility where
+applicable, and a layout that remains usable without relying on color alone.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Testable Content and Behavior
+Question-bank validation, scoring logic, review flows, persistence, and navigation-critical
+behaviors MUST be covered by automated tests. Every user-facing increment MUST be independently
+testable and must not require the entire 270-question set to be manually verified before being
+usable.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Content & Data Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- The canonical question set is versioned data, not embedded ad hoc in UI code.
+- A question MUST have stable identifiers, one unambiguous correct answer, and review-ready
+	explanation content when available.
+- Content changes MUST preserve historical meaning unless a revision is explicitly approved.
+- Any future expansion beyond the initial 270 questions MUST keep backward-compatible IDs so
+	saved progress and analytics remain valid.
+- The app MUST not collect unnecessary personal data; study progress should be stored with the
+	minimum information needed to resume learning.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Development & Quality Gates
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- New quiz behaviors MUST be designed from the user journey backward: select topic, answer,
+	receive feedback, review mistakes, and resume study.
+- Changes to scoring, question ordering, or result summaries MUST include regression tests.
+- UI changes MUST be checked for Vietnamese text overflow, mobile responsiveness, and readable
+	answer states.
+- If a change affects question content, the review must verify source fidelity before release.
+- Features that cannot be tested independently MUST be broken into smaller increments before
+	implementation.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all informal conventions for the project. Any change to the
+principles above MUST be made explicitly in this file, with a semantic version bump and a clear
+reason for the amendment. Clarifications that do not change meaning use a PATCH bump; added or
+materially expanded principles use a MINOR bump; backward-incompatible rule changes use a MAJOR
+bump.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+All implementation plans, specs, and tasks MUST comply with this constitution before work
+proceeds. If a feature conflicts with source fidelity, deterministic assessment, accessibility,
+or independent testability, the feature definition MUST be revised instead of weakening the
+constitution.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-26 | **Last Amended**: 2026-05-26
