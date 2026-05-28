@@ -1,0 +1,22 @@
+{
+    "name": "my-vietnam-quiz-app",
+    "private": true,
+    "version": "0.1.0",
+    "type": "commonjs",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "extract:questions": "node scripts/extract-questions-from-pdf.js"
+    },
+    "dependencies": {
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-react": "^4.3.1",
+        "mammoth": "^1.12.0",
+        "pdf-parse": "^1.1.1",
+        "vite": "^5.4.10"
+    }
+}
