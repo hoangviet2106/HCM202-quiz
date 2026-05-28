@@ -1,5 +1,25 @@
 # My Vietnam Quiz App
 
+Ứng dụng ôn tập câu hỏi trắc nghiệm môn Tư tưởng Hồ Chí Minh với giao diện React + Vite, lưu tiến độ bằng `localStorage`, và chế độ xem lại câu sai.
+
+## Chạy dự án
+
+```bash
+npm install
+npm run dev
+```
+
+## Trích xuất câu hỏi từ PDF
+
+```bash
+npm run extract:questions -- --input path/to/source.pdf --output public/questions.json
+```
+
+## Ghi chú
+
+- Repo hiện có bộ câu hỏi mẫu trong `public/questions.json` để kiểm tra luồng UI và persistence.
+- Khi có PDF nguồn thật, hãy chạy script trích xuất để tạo bộ 270 câu hỏi theo contract trong `specs/001-hcm-quiz-review/contracts/question-bank-schema.md`.# My Vietnam Quiz App
+
 Mục tiêu: một ứng dụng quiz nhỏ để ôn tập kiến thức về Thành phố Hồ Chí Minh (HCM), phục vụ việc học và ôn tập theo bộ câu hỏi/chuẩn được lưu trong thư mục `specs`.
 
 Tổng quan:
