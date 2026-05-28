@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+
+:root {
+    --font-sans: 'Inter', 'Segoe UI', -apple-system, 'Be Vietnam Pro', sans-serif;
+    --type-display-size: 56px;
+}
+
+html,
+body {
+    font-family: var(--font-sans);
+}

@@ -1,0 +1,36 @@
+/* Utility shadow classes mapped to design tokens */
+:root {
+    /* tokens are defined in colors.css already */
+}
+
+.shadow-xs {
+    box-shadow: var(--shadow-xs) !important;
+}
+
+.shadow-sm {
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.shadow-md {
+    box-shadow: var(--shadow-md) !important;
+}
+
+.shadow-lg {
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.shadow-focus {
+    box-shadow: var(--shadow-focus) !important;
+}
+
+.glow-success {
+    box-shadow: var(--glow-success) !important;
+}
+
+.glow-danger {
+    box-shadow: var(--glow-danger) !important;
+}
+
+.glow-primary {
+    box-shadow: var(--glow-primary) !important;
+}

@@ -75,7 +75,7 @@ export function QuestionList({
                     <button
                         key={option.id}
                         type="button"
-                        className={`filter-chip ${filterMode === option.id ? 'active' : ''}`}
+                        className={`filter-chip btn-secondary ${filterMode === option.id ? 'active' : ''}`}
                         onClick={() => onFilterModeChange(option.id)}
                     >
                         {option.label}
@@ -105,7 +105,7 @@ export function QuestionList({
             <div className="list-pagination">
                 <button
                     type="button"
-                    className="pagination-button"
+                    className="pagination-button btn-secondary"
                     onClick={() => onPageChange(Math.max(1, currentPage - 1))}
                     disabled={currentPage <= 1}
                 >
@@ -116,7 +116,7 @@ export function QuestionList({
                 </span>
                 <button
                     type="button"
-                    className="pagination-button"
+                    className="pagination-button btn-secondary"
                     onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
                     disabled={currentPage >= totalPages}
                 >

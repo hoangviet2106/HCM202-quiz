@@ -1,39 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import '../design-system/typography.css';
+@import '../design-system/colors.css';
+@import '../design-system/spacing.css';
+@import '../design-system/shadows.css';
+@import '../design-system/animations.css';
 
 :root {
     color-scheme: light;
-    --color-canvas: #fbfbfc;
-    --color-surface: #ffffff;
-    --color-surface-elevated: #f7f8fa;
-    --color-surface-subtle: #f2f4f7;
-    --color-surface-inverse: #111114;
-    --color-text-primary: #111114;
-    --color-text-secondary: #5c6270;
-    --color-text-tertiary: #8b93a4;
-    --color-text-inverse: #ffffff;
-    --color-brand: #0a84ff;
-    --color-brand-hover: #006fe0;
-    --color-brand-pressed: #0059b8;
-    --color-focus-ring: rgba(10, 132, 255, 0.28);
-    --color-success: #34c759;
-    --color-success-soft: rgba(52, 199, 89, 0.12);
-    --color-warning: #ff9f0a;
-    --color-warning-soft: rgba(255, 159, 10, 0.12);
-    --color-danger: #ff3b30;
-    --color-danger-soft: rgba(255, 59, 48, 0.12);
-    --color-border-subtle: rgba(17, 17, 20, 0.08);
-    --color-border-strong: rgba(17, 17, 20, 0.14);
-    --color-border-focus: rgba(10, 132, 255, 0.35);
-    --shadow-sm: 0 1px 2px rgba(17, 17, 20, 0.06);
-    --shadow-md: 0 8px 24px rgba(17, 17, 20, 0.08);
-    --shadow-lg: 0 16px 40px rgba(17, 17, 20, 0.12);
-    --shadow-focus: 0 0 0 4px rgba(10, 132, 255, 0.14);
-    --radius-xs: 8px;
-    --radius-sm: 12px;
-    --radius-md: 16px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --radius-pill: 9999px;
 }
 
 * {
@@ -67,6 +39,72 @@ select {
 
 button {
     cursor: pointer;
+}
+
+/* New button variants following Gen Z design tokens */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 32px;
+    border-radius: 10px;
+    color: var(--color-text-inverse);
+    background: var(--color-primary-gradient);
+    box-shadow: var(--shadow-sm);
+    font-weight: 600;
+    transition: transform var(--motion-fast), box-shadow var(--motion-fast), filter var(--motion-fast);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    background: rgba(99, 102, 241, 0.06);
+    border: 2px solid var(--color-primary-mid);
+    color: var(--color-primary-mid);
+    font-weight: 600;
+}
+
+.btn-text {
+    background: transparent;
+    color: var(--color-primary-mid);
+    font-weight: 600;
+    padding: 8px 10px;
+}
+
+.btn-text:hover {
+    background: rgba(99, 102, 241, 0.05);
+    text-decoration: underline;
+}
+
+.btn-danger {
+    background: var(--color-danger);
+    color: var(--color-text-inverse);
+    border: none;
+}
+
+.btn {
+    font: inherit;
+    border: none;
+}
+
+.btn-sm {
+    padding: 8px 12px;
+}
+
+.destructive {
+    background: var(--color-danger);
+    color: var(--color-text-inverse);
+    border: none !important;
 }
 
 button:focus-visible,
@@ -599,7 +637,7 @@ input:focus-visible {
     font-weight: 800;
     font-size: 1rem;
     color: var(--color-text-inverse);
-    background: linear-gradient(135deg, var(--color-brand), #64d2ff);
+    background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-mid));
     box-shadow: var(--shadow-md);
 }
 

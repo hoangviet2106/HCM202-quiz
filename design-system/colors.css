@@ -1,0 +1,84 @@
+:root {
+    /* Primary gradient */
+    --color-primary-start: #6366F1;
+    --color-primary-mid: #8B5CF6;
+    --color-primary-end: #D946EF;
+    --color-primary-gradient: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-mid), var(--color-primary-end));
+
+    /* Secondary accents */
+    --color-accent-neon: #00D9FF;
+    --color-accent-hot: #FF006E;
+    --color-accent-lime: #06FFA5;
+
+    /* Surfaces */
+    --color-canvas: #0F0F1E;
+    --color-surface-light: #FFFFFF;
+    --color-surface-elevated: #F8F9FF;
+    --color-surface-subtle: #F3F4F9;
+
+    /* Text */
+    --color-text-primary: #0F0F1E;
+    --color-text-secondary: #6B7280;
+    --color-text-tertiary: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+    --color-text-interactive: var(--color-primary-mid);
+
+    /* Semantic */
+    --color-success: #06FFA5;
+    --color-success-soft: rgba(6, 255, 165, 0.15);
+    --color-success-glow: rgba(6, 255, 165, 0.3);
+
+    --color-danger: #FF006E;
+    --color-danger-soft: rgba(255, 0, 110, 0.15);
+    --color-danger-glow: rgba(255, 0, 110, 0.3);
+
+    --color-warning: #FFA500;
+    --color-warning-soft: rgba(255, 165, 0, 0.15);
+
+    --color-info: #00D9FF;
+    --color-info-soft: rgba(0, 217, 255, 0.15);
+
+    /* Borders and dividers */
+    --color-border-light: rgba(99, 102, 241, 0.2);
+    --color-border-medium: rgba(99, 102, 241, 0.4);
+    --color-border-strong: rgba(99, 102, 241, 0.28);
+    --color-border-focus: #6366F1;
+    --color-divider-subtle: rgba(0, 0, 0, 0.06);
+
+    /* Radii */
+    --radius-xs: 6px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+    --radius-pill: 9999px;
+
+    /* Shadows */
+    --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
+    --shadow-focus: 0 0 0 4px rgba(99, 102, 241, 0.25);
+
+    /* Glows */
+    --glow-success: 0 0 20px rgba(6, 255, 165, 0.4);
+    --glow-danger: 0 0 20px rgba(255, 0, 110, 0.4);
+    --glow-primary: 0 0 24px rgba(99, 102, 241, 0.35);
+
+    /* Motion timings */
+    --motion-quick: 100ms;
+    --motion-fast: 150ms;
+    --motion-medium: 220ms;
+    --motion-slow: 300ms;
+
+    /* Legacy aliases (map old names to new tokens to avoid massive style changes) */
+    --color-brand: var(--color-primary-mid);
+    --color-border-subtle: var(--color-border-light);
+    --color-surface: var(--color-surface-light);
+    --color-surface-inverse: var(--color-canvas);
+    --color-text-primary: var(--color-text-primary);
+    --color-text-secondary: var(--color-text-secondary);
+    --color-text-tertiary: var(--color-text-tertiary);
+    --color-success-soft: var(--color-success-soft);
+    --color-danger-soft: var(--color-danger-soft);
+}

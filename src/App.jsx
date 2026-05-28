@@ -253,7 +253,7 @@ export default function App() {
                 <div className="hero-actions">
                     <button
                         type="button"
-                        className={`control-pill ${filterMode === 'review' ? 'active' : ''}`}
+                        className={`btn-secondary ${filterMode === 'review' ? 'active' : ''}`}
                         onClick={() => {
                             setFilterMode((currentValue) => (currentValue === 'review' ? 'all' : 'review'));
                             setCurrentPage(1);
@@ -261,13 +261,13 @@ export default function App() {
                     >
                         Ôn câu sai
                     </button>
-                    <button type="button" className="control-pill secondary" onClick={handlePrevQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) <= 0}>
+                    <button type="button" className="btn-secondary" onClick={handlePrevQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) <= 0}>
                         Câu trước
                     </button>
-                    <button type="button" className="control-pill secondary" onClick={handleNextQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) === visibleQuestions.length - 1}>
+                    <button type="button" className="btn-secondary" onClick={handleNextQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) === visibleQuestions.length - 1}>
                         Câu tiếp
                     </button>
-                    <button type="button" className="control-pill destructive" onClick={handleResetAll}>
+                    <button type="button" className="btn-secondary destructive" onClick={handleResetAll}>
                         Reset all
                     </button>
                 </div>
