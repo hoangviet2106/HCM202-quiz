@@ -6,7 +6,15 @@ function renderFeedback(answerRecord, question) {
     }
 
     if (answerRecord.isCorrect) {
-        return <p className="feedback correct">Đúng rồi. Lựa chọn của bạn khớp với đáp án chuẩn.</p>;
+        const selectedOption = question.options.find((option) => option.id === answerRecord.selectedOptionId);
+
+        return (
+            <div className="feedback correct">
+                <p>
+                    Đúng rồi. {selectedOption ? `Bạn đã chọn ${selectedOption.id} - ${selectedOption.label}.` : 'Lựa chọn của bạn khớp với đáp án chuẩn.'}
+                </p>
+            </div>
+        );
     }
 
     const correctOption = question.options.find((option) => option.id === question.correctOptionId);
@@ -14,7 +22,9 @@ function renderFeedback(answerRecord, question) {
 
     return (
         <div className="feedback wrong">
-            <p>Sai rồi. Bạn đã chọn {selectedOption?.id ?? 'không rõ'}, đáp án đúng là {correctOption?.id ?? question.correctOptionId}.</p>
+            <p>
+                Sai rồi. Bạn đã chọn {selectedOption ? `${selectedOption.id} - ${selectedOption.label}` : 'không rõ'}, đáp án đúng là {correctOption ? `${correctOption.id} - ${correctOption.label}` : question.correctOptionId}.
+            </p>
             {question.explanation ? <p className="feedback-note">{question.explanation}</p> : null}
         </div>
     );
@@ -26,7 +36,10 @@ export function QuestionDetail({
     onChooseOption,
     totalQuestions,
     answeredCount,
-    reviewOnly,
+    visibleAnsweredCount,
+    visibleCorrectCount,
+    visibleWrongCount,
+    filterMode,
     emptyState,
 }) {
     if (!question) {
@@ -34,7 +47,7 @@ export function QuestionDetail({
             <section className="panel detail-panel">
                 <div className="empty-state detail-empty">
                     {emptyState
-                        ? 'Không còn câu nào trong chế độ xem này. Hãy tắt lọc câu sai hoặc reset để quay về toàn bộ bộ câu hỏi.'
+                        ? 'Không còn câu nào trong chế độ xem này. Hãy đổi bộ lọc, xóa từ khóa tìm kiếm, hoặc reset để quay về toàn bộ bộ câu hỏi.'
                         : 'Chọn một câu ở cột trái để bắt đầu ôn tập.'}
                 </div>
             </section>
@@ -50,8 +63,14 @@ export function QuestionDetail({
                 </div>
                 <div className="detail-stats">
                     <span>{answeredCount}/{totalQuestions} đã làm</span>
-                    {reviewOnly ? <span className="detail-chip">Chế độ câu sai</span> : null}
+                    <span>{visibleAnsweredCount} câu trong bộ lọc hiện tại</span>
+                    {filterMode === 'review' ? <span className="detail-chip">Chế độ ôn câu sai</span> : null}
                 </div>
+            </div>
+
+            <div className="detail-metrics" aria-label="Tóm tắt trạng thái bộ lọc">
+                <span className="detail-metric success">{visibleCorrectCount} đúng</span>
+                <span className="detail-metric danger">{visibleWrongCount} sai</span>
             </div>
 
             <div className="option-grid" role="list" aria-label={`Các lựa chọn cho câu ${question.number}`}>

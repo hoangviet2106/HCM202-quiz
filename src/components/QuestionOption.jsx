@@ -14,7 +14,7 @@ export function QuestionOption({ option, isSelected, isCorrectAnswer, isWrongSel
             className={className}
             onClick={onClick}
             aria-pressed={isSelected}
-            aria-label={`Lựa chọn ${option.id}`}
+            aria-label={`Lựa chọn ${option.id}: ${option.label}`}
         >
             <span className="option-id" aria-hidden>
                 {option.id}

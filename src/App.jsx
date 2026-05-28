@@ -4,6 +4,27 @@ import { QuestionList } from './components/QuestionList';
 import { loadQuestionBank } from './lib/questionBank';
 import { clearStudyState, loadStudyState, saveStudyState } from './lib/storage';
 
+const PAGE_SIZE = 18;
+
+function normalizeText(value) {
+    return String(value ?? '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '');
+}
+
+function buildSearchIndex(question) {
+    return [
+        question.number,
+        question.prompt,
+        question.tags?.join(' '),
+        question.options?.map((option) => `${option.id} ${option.label}`).join(' '),
+    ]
+        .filter(Boolean)
+        .map(normalizeText)
+        .join(' ');
+}
+
 function buildEmptyBankState() {
     return {
         status: 'loading',
@@ -17,7 +38,9 @@ export default function App() {
     const [bankState, setBankState] = useState(() => buildEmptyBankState());
     const [activeQuestionId, setActiveQuestionId] = useState(null);
     const [answerRecords, setAnswerRecords] = useState({});
-    const [reviewOnly, setReviewOnly] = useState(false);
+    const [filterMode, setFilterMode] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
     const [hydrated, setHydrated] = useState(false);
 
     useEffect(() => {
@@ -81,31 +104,79 @@ export default function App() {
     }, [activeQuestionId, answerRecords, bankState.status, hydrated]);
 
     const questions = bankState.bank?.questions ?? [];
-    const filteredQuestions = useMemo(() => {
-        if (!reviewOnly) {
-            return questions;
-        }
 
-        return questions.filter((question) => answerRecords[question.id]?.isCorrect === false);
-    }, [answerRecords, questions, reviewOnly]);
+    const searchableQuestions = useMemo(() => {
+        return questions.map((question) => ({
+            question,
+            index: buildSearchIndex(question),
+            record: answerRecords[question.id] ?? null,
+        }));
+    }, [answerRecords, questions]);
+
+    const visibleQuestions = useMemo(() => {
+        const normalizedQuery = normalizeText(searchQuery).trim();
+
+        return searchableQuestions
+            .filter(({ question, index, record }) => {
+                const matchesSearch = normalizedQuery === '' || index.includes(normalizedQuery);
+
+                if (!matchesSearch) {
+                    return false;
+                }
+
+                switch (filterMode) {
+                    case 'answered':
+                        return Boolean(record);
+                    case 'unanswered':
+                        return !record;
+                    case 'correct':
+                        return record?.isCorrect === true;
+                    case 'wrong':
+                    case 'review':
+                        return record?.isCorrect === false;
+                    default:
+                        return Boolean(question);
+                }
+            })
+            .map(({ question }) => question);
+    }, [filterMode, searchableQuestions, searchQuery]);
+
+    const totalPages = Math.max(1, Math.ceil(visibleQuestions.length / PAGE_SIZE));
+    const clampedPage = Math.min(currentPage, totalPages);
+    const pageQuestions = useMemo(() => {
+        const startIndex = (clampedPage - 1) * PAGE_SIZE;
+        return visibleQuestions.slice(startIndex, startIndex + PAGE_SIZE);
+    }, [clampedPage, visibleQuestions]);
 
     useEffect(() => {
         if (bankState.status !== 'ready') {
             return;
         }
 
-        if (filteredQuestions.length === 0) {
-            if (reviewOnly && activeQuestionId !== null) {
+        if (visibleQuestions.length === 0) {
+            if (activeQuestionId !== null) {
                 setActiveQuestionId(null);
+            }
+            if (currentPage !== 1) {
+                setCurrentPage(1);
             }
             return;
         }
 
-        const activeStillVisible = filteredQuestions.some((question) => question.id === activeQuestionId);
-        if (!activeStillVisible) {
-            setActiveQuestionId(filteredQuestions[0].id);
+        const activeIndex = visibleQuestions.findIndex((question) => question.id === activeQuestionId);
+        if (activeIndex === -1) {
+            setActiveQuestionId(visibleQuestions[0].id);
+            if (clampedPage !== 1) {
+                setCurrentPage(1);
+            }
+            return;
         }
-    }, [activeQuestionId, bankState.status, filteredQuestions, reviewOnly]);
+
+        const nextPage = Math.floor(activeIndex / PAGE_SIZE) + 1;
+        if (nextPage !== clampedPage) {
+            setCurrentPage(nextPage);
+        }
+    }, [activeQuestionId, bankState.status, clampedPage, currentPage, visibleQuestions]);
 
     const activeQuestion = questions.find((question) => question.id === activeQuestionId) ?? null;
     const activeRecord = activeQuestion ? answerRecords[activeQuestion.id] ?? null : null;
@@ -114,10 +185,19 @@ export default function App() {
     const answeredCount = questions.filter((question) => answerRecords[question.id]).length;
     const correctCount = questions.filter((question) => answerRecords[question.id]?.isCorrect).length;
     const wrongCount = questions.filter((question) => answerRecords[question.id]?.isCorrect === false).length;
+    const unansweredCount = Math.max(totalQuestions - answeredCount, 0);
     const progressPercent = totalQuestions > 0 ? Math.round((answeredCount / totalQuestions) * 100) : 0;
+
+    const visibleAnsweredCount = visibleQuestions.filter((question) => answerRecords[question.id]).length;
+    const visibleCorrectCount = visibleQuestions.filter((question) => answerRecords[question.id]?.isCorrect).length;
+    const visibleWrongCount = visibleQuestions.filter((question) => answerRecords[question.id]?.isCorrect === false).length;
 
     const handleSelectQuestion = (questionId) => {
         setActiveQuestionId(questionId);
+        const visibleIndex = visibleQuestions.findIndex((question) => question.id === questionId);
+        if (visibleIndex >= 0) {
+            setCurrentPage(Math.floor(visibleIndex / PAGE_SIZE) + 1);
+        }
     };
 
     const handleChooseOption = (question, optionId) => {
@@ -136,171 +216,91 @@ export default function App() {
     const handleResetAll = () => {
         clearStudyState();
         setAnswerRecords({});
-        setReviewOnly(false);
+        setFilterMode('all');
+        setSearchQuery('');
+        setCurrentPage(1);
         setActiveQuestionId(questions[0]?.id ?? null);
     };
 
-    // Navigation: next / previous question within current filteredQuestions
     function handleNextQuestion() {
-        if (!filteredQuestions || filteredQuestions.length === 0) return;
-        const idx = filteredQuestions.findIndex((q) => q.id === activeQuestionId);
-        const nextIndex = idx === -1 ? 0 : Math.min(filteredQuestions.length - 1, idx + 1);
-        setActiveQuestionId(filteredQuestions[nextIndex].id);
+        if (!visibleQuestions.length) return;
+        const index = visibleQuestions.findIndex((question) => question.id === activeQuestionId);
+        const nextIndex = index === -1 ? 0 : Math.min(visibleQuestions.length - 1, index + 1);
+        setActiveQuestionId(visibleQuestions[nextIndex].id);
+        setCurrentPage(Math.floor(nextIndex / PAGE_SIZE) + 1);
     }
 
     function handlePrevQuestion() {
-        if (!filteredQuestions || filteredQuestions.length === 0) return;
-        const idx = filteredQuestions.findIndex((q) => q.id === activeQuestionId);
-        const prevIndex = idx === -1 ? 0 : Math.max(0, idx - 1);
-        setActiveQuestionId(filteredQuestions[prevIndex].id);
-    }
-
-    // YouTube help video state
-    const [youtubeUrl, setYoutubeUrl] = useState(() => {
-        try {
-            return window.localStorage.getItem('hcm-help-video') || '';
-        } catch {
-            return '';
-        }
-    });
-    const [videoInput, setVideoInput] = useState(youtubeUrl ?? '');
-    const [showVideoPanel, setShowVideoPanel] = useState(false);
-
-    useEffect(() => {
-        try {
-            if (youtubeUrl) {
-                window.localStorage.setItem('hcm-help-video', youtubeUrl);
-            } else {
-                window.localStorage.removeItem('hcm-help-video');
-            }
-        } catch { }
-    }, [youtubeUrl]);
-
-    function toYouTubeEmbed(url) {
-        if (!url) return '';
-        try {
-            const u = new URL(url.trim());
-            // youtu.be short link
-            if (u.hostname.includes('youtu.be')) {
-                const id = u.pathname.slice(1);
-                return `https://www.youtube.com/embed/${id}`;
-            }
-            // youtube.com watch?v=ID
-            if (u.searchParams.get('v')) {
-                return `https://www.youtube.com/embed/${u.searchParams.get('v')}`;
-            }
-            // embed or other forms
-            if (u.pathname.includes('/embed/')) {
-                return url;
-            }
-        } catch {
-            return '';
-        }
-        return '';
+        if (!visibleQuestions.length) return;
+        const index = visibleQuestions.findIndex((question) => question.id === activeQuestionId);
+        const prevIndex = index === -1 ? 0 : Math.max(0, index - 1);
+        setActiveQuestionId(visibleQuestions[prevIndex].id);
+        setCurrentPage(Math.floor(prevIndex / PAGE_SIZE) + 1);
     }
 
     return (
         <div className="app-shell">
             <header className="hero">
-                <div>
+                <div className="hero-copy-block">
                     <p className="eyebrow">HCM Quiz Review</p>
-                    <h1>HCM 202 - Ôn tập</h1>
-
+                    <h1>Ôn tập HCM.</h1>
+                    <p className="hero-copy">
+                        Danh sách câu hỏi bên trái, nội dung ôn tập bên phải, phản hồi đúng/sai ngay lập tức,
+                        và trạng thái được lưu lại để bạn quay lại bất cứ lúc nào.
+                    </p>
                 </div>
 
-                <div className="hero-controls">
+                <div className="hero-actions">
                     <button
                         type="button"
-                        className={`control-pill ${reviewOnly ? 'active' : ''}`}
-                        onClick={() => setReviewOnly((currentValue) => !currentValue)}
+                        className={`control-pill ${filterMode === 'review' ? 'active' : ''}`}
+                        onClick={() => {
+                            setFilterMode((currentValue) => (currentValue === 'review' ? 'all' : 'review'));
+                            setCurrentPage(1);
+                        }}
                     >
-                        {reviewOnly ? 'Đang xem câu sai' : 'Xem câu sai'}
+                        Ôn câu sai
                     </button>
-                    <button type="button" className="control-pill destructive" onClick={handleResetAll}>
-                        Reset all answers
+                    <button type="button" className="control-pill secondary" onClick={handlePrevQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) <= 0}>
+                        Câu trước
                     </button>
-                    <button type="button" className="control-pill" onClick={handlePrevQuestion} disabled={filteredQuestions.length === 0 || filteredQuestions.findIndex(q => q.id === activeQuestionId) <= 0}>
-                        Câu trước 
-                    </button>
-
-                    <button type="button" className="control-pill" onClick={handleNextQuestion} disabled={filteredQuestions.length === 0 || filteredQuestions.findIndex(q => q.id === activeQuestionId) === filteredQuestions.length - 1}>
+                    <button type="button" className="control-pill secondary" onClick={handleNextQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) === visibleQuestions.length - 1}>
                         Câu tiếp
                     </button>
-
-                    <button
-                        type="button"
-                        className={`control-pill ${showVideoPanel ? 'active' : ''}`}
-                        onClick={() => setShowVideoPanel((v) => !v)}
-                    >
-                        Video Link
+                    <button type="button" className="control-pill destructive" onClick={handleResetAll}>
+                        Reset all
                     </button>
                 </div>
             </header>
 
-            {showVideoPanel && (
-                <div style={{ margin: '14px 0' }}>
-                    {youtubeUrl ? (
-                        <div className="video-wrapper">
-                            <iframe
-                                title="Help video"
-                                src={toYouTubeEmbed(youtubeUrl)}
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                            />
-                            <div style={{ marginTop: 10, display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-                                <button type="button" className="control-pill" onClick={() => setYoutubeUrl('')}>Xoá video</button>
-                                <button type="button" className="control-pill" onClick={() => setShowVideoPanel(false)}>Đóng</button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                            <input
-                                aria-label="YouTube link"
-                                placeholder="Dán link YouTube hướng dẫn (tùy chọn)"
-                                value={videoInput}
-                                onChange={(e) => setVideoInput(e.target.value)}
-                                style={{ flex: 1, padding: '8px 10px', borderRadius: 8, border: '1px solid rgba(0,0,0,0.08)' }}
-                            />
-                            <button
-                                type="button"
-                                className="control-pill"
-                                onClick={() => {
-                                    const embed = toYouTubeEmbed(videoInput);
-                                    if (embed) setYoutubeUrl(videoInput.trim());
-                                }}
-                            >
-                                Hiển thị video
-                            </button>
-                            <button type="button" className="control-pill" onClick={() => setShowVideoPanel(false)}>Đóng</button>
-                        </div>
-                    )}
-                </div>
-            )}
-
             <section className="stats-grid" aria-label="Tổng quan tiến độ học">
-                <article className="stat-card">
+                <article className="stat-card accent-card">
                     <span className="stat-label">Tổng câu</span>
                     <strong>{totalQuestions}</strong>
+                    <span className="stat-caption">Bộ câu hỏi đầy đủ</span>
                 </article>
                 <article className="stat-card">
                     <span className="stat-label">Đã làm</span>
                     <strong>{answeredCount}</strong>
+                    <span className="stat-caption">{unansweredCount} câu chưa chạm</span>
                 </article>
-                <article className="stat-card">
+                <article className="stat-card success-card">
                     <span className="stat-label">Đúng</span>
                     <strong>{correctCount}</strong>
+                    <span className="stat-caption">Câu đã chinh phục</span>
                 </article>
-                <article className="stat-card">
+                <article className="stat-card danger-card">
                     <span className="stat-label">Sai</span>
                     <strong>{wrongCount}</strong>
+                    <span className="stat-caption">Câu cần ôn lại</span>
                 </article>
                 <article className="stat-card progress-card">
-                    <span className="stat-label">Hoàn thành</span>
+                    <span className="stat-label">Tiến độ</span>
                     <strong>{progressPercent}%</strong>
                     <div className="progress-track" aria-hidden="true">
                         <span className="progress-fill" style={{ width: `${progressPercent}%` }} />
                     </div>
+                    <span className="stat-caption">{answeredCount}/{totalQuestions} đã làm</span>
                 </article>
             </section>
 
@@ -308,25 +308,40 @@ export default function App() {
 
             {bankState.status === 'error' && (
                 <div className="status-panel error-panel">
-                    Không thể tải bộ câu hỏi. Hãy kiểm tra file `public/questions.json` hoặc chạy script trích xuất.
+                    Không thể tải bộ câu hỏi. Hãy kiểm tra file public/questions.json hoặc chạy script trích xuất.
                 </div>
             )}
 
             {bankState.status === 'ready' && bankState.usingFallback && (
                 <div className="status-panel warning-panel">
-                    Đang dùng bộ câu hỏi mẫu vì chưa tìm thấy `public/questions.json` hợp lệ.
+                    Đang dùng bộ câu hỏi mẫu vì chưa tìm thấy public/questions.json hợp lệ.
                 </div>
             )}
 
-            {/* Validation warnings intentionally hidden */}
-
             <main className="quiz-layout">
                 <QuestionList
-                    questions={filteredQuestions}
+                    questions={pageQuestions}
                     activeQuestionId={activeQuestionId}
                     answerRecords={answerRecords}
-                    reviewOnly={reviewOnly}
+                    filterMode={filterMode}
+                    searchQuery={searchQuery}
+                    totalQuestions={totalQuestions}
+                    visibleCount={visibleQuestions.length}
+                    totalPages={totalPages}
+                    currentPage={clampedPage}
+                    visibleAnsweredCount={visibleAnsweredCount}
+                    visibleCorrectCount={visibleCorrectCount}
+                    visibleWrongCount={visibleWrongCount}
                     onSelectQuestion={handleSelectQuestion}
+                    onSearchQueryChange={(value) => {
+                        setSearchQuery(value);
+                        setCurrentPage(1);
+                    }}
+                    onFilterModeChange={(mode) => {
+                        setFilterMode(mode);
+                        setCurrentPage(1);
+                    }}
+                    onPageChange={setCurrentPage}
                 />
 
                 <QuestionDetail
@@ -335,8 +350,11 @@ export default function App() {
                     onChooseOption={handleChooseOption}
                     totalQuestions={totalQuestions}
                     answeredCount={answeredCount}
-                    reviewOnly={reviewOnly}
-                    emptyState={filteredQuestions.length === 0}
+                    visibleAnsweredCount={visibleAnsweredCount}
+                    visibleCorrectCount={visibleCorrectCount}
+                    visibleWrongCount={visibleWrongCount}
+                    filterMode={filterMode}
+                    emptyState={visibleQuestions.length === 0}
                 />
             </main>
         </div>
