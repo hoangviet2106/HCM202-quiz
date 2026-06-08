@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { QuestionDetail } from './components/QuestionDetail';
-import { QuestionList } from './components/QuestionList';
+import { EvidenceGallery } from './components/EvidenceGallery';
 import { loadQuestionBank } from './lib/questionBank';
 import { clearStudyState, loadStudyState, saveStudyState } from './lib/storage';
 
@@ -37,11 +37,19 @@ function buildEmptyBankState() {
 export default function App() {
     const [bankState, setBankState] = useState(() => buildEmptyBankState());
     const [activeQuestionId, setActiveQuestionId] = useState(null);
+    const [activeTab, setActiveTab] = useState('quiz');
     const [answerRecords, setAnswerRecords] = useState({});
     const [filterMode, setFilterMode] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [hydrated, setHydrated] = useState(false);
+    const [theme, setTheme] = useState(() => {
+        try {
+            return window.localStorage.getItem('theme') || 'light';
+        } catch {
+            return 'light';
+        }
+    });
 
     useEffect(() => {
         let cancelled = false;
@@ -91,6 +99,15 @@ export default function App() {
             cancelled = true;
         };
     }, []);
+
+    useEffect(() => {
+        try {
+            document.documentElement.setAttribute('data-theme', theme);
+            window.localStorage.setItem('theme', theme);
+        } catch (e) {
+            // ignore
+        }
+    }, [theme]);
 
     useEffect(() => {
         if (!hydrated || bankState.status !== 'ready') {
@@ -191,6 +208,10 @@ export default function App() {
     const visibleAnsweredCount = visibleQuestions.filter((question) => answerRecords[question.id]).length;
     const visibleCorrectCount = visibleQuestions.filter((question) => answerRecords[question.id]?.isCorrect).length;
     const visibleWrongCount = visibleQuestions.filter((question) => answerRecords[question.id]?.isCorrect === false).length;
+    const tabs = [
+        { id: 'quiz', label: 'Quiz' },
+        { id: 'images', label: 'Ảnh' },
+    ];
 
     const handleSelectQuestion = (questionId) => {
         setActiveQuestionId(questionId);
@@ -243,10 +264,10 @@ export default function App() {
             <header className="hero">
                 <div className="hero-copy-block">
                     <p className="eyebrow">HCM Quiz Review</p>
-                    <h1>Ôn tập HCM.</h1>
+                    <h1>Ôn tập Tư tưởng Hồ Chí Minh.</h1>
                     <p className="hero-copy">
-                        Danh sách câu hỏi bên trái, nội dung ôn tập bên phải, phản hồi đúng/sai ngay lập tức,
-                        và trạng thái được lưu lại để bạn quay lại bất cứ lúc nào.
+                        Ôn tập câu hỏi theo nhịp, trả lời trực tiếp và nhận phản hồi ngay lập tức. Tiến độ của bạn
+                        được lưu lại để có thể tiếp tục bất kỳ lúc nào.
                     </p>
                 </div>
 
@@ -261,102 +282,104 @@ export default function App() {
                     >
                         Ôn câu sai
                     </button>
-                    <button type="button" className="btn-secondary" onClick={handlePrevQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) <= 0}>
-                        Câu trước
+                    <button type="button" className="btn-secondary theme-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+                        {theme === 'light' ? '🌙 Giao diện tối' : '☀️ Giao diện sáng'}
                     </button>
-                    <button type="button" className="btn-secondary" onClick={handleNextQuestion} disabled={visibleQuestions.length === 0 || visibleQuestions.findIndex((question) => question.id === activeQuestionId) === visibleQuestions.length - 1}>
-                        Câu tiếp
-                    </button>
+
                     <button type="button" className="btn-secondary destructive" onClick={handleResetAll}>
-                        Reset all
+                        Xóa toàn bộ
                     </button>
                 </div>
             </header>
 
-            <section className="stats-grid" aria-label="Tổng quan tiến độ học">
-                <article className="stat-card accent-card">
-                    <span className="stat-label">Tổng câu</span>
-                    <strong>{totalQuestions}</strong>
-                    <span className="stat-caption">Bộ câu hỏi đầy đủ</span>
-                </article>
-                <article className="stat-card">
-                    <span className="stat-label">Đã làm</span>
-                    <strong>{answeredCount}</strong>
-                    <span className="stat-caption">{unansweredCount} câu chưa chạm</span>
-                </article>
-                <article className="stat-card success-card">
-                    <span className="stat-label">Đúng</span>
-                    <strong>{correctCount}</strong>
-                    <span className="stat-caption">Câu đã chinh phục</span>
-                </article>
-                <article className="stat-card danger-card">
-                    <span className="stat-label">Sai</span>
-                    <strong>{wrongCount}</strong>
-                    <span className="stat-caption">Câu cần ôn lại</span>
-                </article>
-                <article className="stat-card progress-card">
-                    <span className="stat-label">Tiến độ</span>
-                    <strong>{progressPercent}%</strong>
-                    <div className="progress-track" aria-hidden="true">
-                        <span className="progress-fill" style={{ width: `${progressPercent}%` }} />
-                    </div>
-                    <span className="stat-caption">{answeredCount}/{totalQuestions} đã làm</span>
-                </article>
+            <section className="toolbar-panel" aria-label="Thanh công cụ nội dung">
+                <div className="tab-strip" role="tablist" aria-label="Chọn chế độ xem">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.id}
+                            type="button"
+                            role="tab"
+                            aria-selected={activeTab === tab.id}
+                            className={`tab-button ${activeTab === tab.id ? 'active' : ''}`}
+                            onClick={() => setActiveTab(tab.id)}
+                        >
+                            <span className="tab-label">{tab.label}</span>
+                            <span className="tab-hint">{tab.id === 'quiz' ? 'Làm bài và ôn tập' : 'Kho ảnh minh chứng'}</span>
+                        </button>
+                    ))}
+                </div>
+                <p className="toolbar-note">
+                    Tab Ảnh là khung collage để bạn thay bằng các minh chứng lịch sử Đảng Việt Nam theo bộ ảnh của riêng bạn.
+                </p>
             </section>
 
-            {bankState.status === 'loading' && <div className="status-panel">Đang tải bộ câu hỏi...</div>}
+            {activeTab === 'quiz' ? (
+                <>
+                    <section className="stats-grid" aria-label="Tổng quan tiến độ học">
+                        <article className="stat-card accent-card">
+                            <span className="stat-label">Tổng câu</span>
+                            <strong>{totalQuestions}</strong>
+                            <span className="stat-caption">Bộ câu hỏi đầy đủ</span>
+                        </article>
+                        <article className="stat-card">
+                            <span className="stat-label">Đã làm</span>
+                            <strong>{answeredCount}</strong>
+                            <span className="stat-caption">{unansweredCount} câu chưa chạm</span>
+                        </article>
+                        <article className="stat-card success-card">
+                            <span className="stat-label">Đúng</span>
+                            <strong>{correctCount}</strong>
+                            <span className="stat-caption">Câu đã chinh phục</span>
+                        </article>
+                        <article className="stat-card danger-card">
+                            <span className="stat-label">Sai</span>
+                            <strong>{wrongCount}</strong>
+                            <span className="stat-caption">Câu cần ôn lại</span>
+                        </article>
+                        <article className="stat-card progress-card">
+                            <span className="stat-label">Tiến độ</span>
+                            <strong>{progressPercent}%</strong>
+                            <div className="progress-track" aria-hidden="true">
+                                <span className="progress-fill" style={{ width: `${progressPercent}%` }} />
+                            </div>
+                            <span className="stat-caption">{answeredCount}/{totalQuestions} đã làm</span>
+                        </article>
+                    </section>
 
-            {bankState.status === 'error' && (
-                <div className="status-panel error-panel">
-                    Không thể tải bộ câu hỏi. Hãy kiểm tra file public/questions.json hoặc chạy script trích xuất.
-                </div>
+                    {bankState.status === 'loading' && <div className="status-panel">Đang tải bộ câu hỏi...</div>}
+
+                    {bankState.status === 'error' && (
+                        <div className="status-panel error-panel">
+                            Không thể tải bộ câu hỏi. Hãy kiểm tra file public/questions.json hoặc chạy script trích xuất.
+                        </div>
+                    )}
+
+                    {bankState.status === 'ready' && bankState.usingFallback && (
+                        <div className="status-panel warning-panel">
+                            Đang dùng bộ câu hỏi mẫu vì chưa tìm thấy public/questions.json hợp lệ.
+                        </div>
+                    )}
+
+                    <main className="quiz-layout single-column">
+                        <QuestionDetail
+                            question={activeQuestion}
+                            answerRecord={activeRecord}
+                            onChooseOption={handleChooseOption}
+                            totalQuestions={totalQuestions}
+                            answeredCount={answeredCount}
+                            visibleAnsweredCount={visibleAnsweredCount}
+                            visibleCorrectCount={visibleCorrectCount}
+                            visibleWrongCount={visibleWrongCount}
+                            filterMode={filterMode}
+                            emptyState={visibleQuestions.length === 0}
+                            onNext={handleNextQuestion}
+                            onPrev={handlePrevQuestion}
+                        />
+                    </main>
+                </>
+            ) : (
+                <EvidenceGallery />
             )}
-
-            {bankState.status === 'ready' && bankState.usingFallback && (
-                <div className="status-panel warning-panel">
-                    Đang dùng bộ câu hỏi mẫu vì chưa tìm thấy public/questions.json hợp lệ.
-                </div>
-            )}
-
-            <main className="quiz-layout">
-                <QuestionList
-                    questions={pageQuestions}
-                    activeQuestionId={activeQuestionId}
-                    answerRecords={answerRecords}
-                    filterMode={filterMode}
-                    searchQuery={searchQuery}
-                    totalQuestions={totalQuestions}
-                    visibleCount={visibleQuestions.length}
-                    totalPages={totalPages}
-                    currentPage={clampedPage}
-                    visibleAnsweredCount={visibleAnsweredCount}
-                    visibleCorrectCount={visibleCorrectCount}
-                    visibleWrongCount={visibleWrongCount}
-                    onSelectQuestion={handleSelectQuestion}
-                    onSearchQueryChange={(value) => {
-                        setSearchQuery(value);
-                        setCurrentPage(1);
-                    }}
-                    onFilterModeChange={(mode) => {
-                        setFilterMode(mode);
-                        setCurrentPage(1);
-                    }}
-                    onPageChange={setCurrentPage}
-                />
-
-                <QuestionDetail
-                    question={activeQuestion}
-                    answerRecord={activeRecord}
-                    onChooseOption={handleChooseOption}
-                    totalQuestions={totalQuestions}
-                    answeredCount={answeredCount}
-                    visibleAnsweredCount={visibleAnsweredCount}
-                    visibleCorrectCount={visibleCorrectCount}
-                    visibleWrongCount={visibleWrongCount}
-                    filterMode={filterMode}
-                    emptyState={visibleQuestions.length === 0}
-                />
-            </main>
         </div>
     );
 }

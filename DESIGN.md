@@ -1,574 +1,639 @@
-# DESIGN.md - Gen Z Edition 🚀
+# DESIGN.md — HCM Quiz Review UI
 
-Ứng dụng quiz HCM cho Gen Z - **Bold, Dynamic, Playful nhưng Professional**.
+**Version 2.1 — UX/UI updates (theme, navigation, music, tokens)**
 
-Thiết kế này tối ưu cho:
-- Tương tác nhanh, feedback tức thì
-- Động lực học tập (gamification feel)
-- Văn hóa visual Gen Z (gradients, bold colors, modern typography)
-- Mobile-first nhưng desktop qua hay
-- Vietnamese diacritics luôn crystal clear
+Bản này cập nhật từ v2.0 để phản ánh các thay đổi giao diện và hành vi đã
+triển khai trong codebase: tông màu sáng cà phê (coffee palette), cải thiện
+dark-theme, di chuyển điều hướng Prev/Next, thêm ô nhập link YouTube để phát
+nền nhạc cùng nút Play / Clear, và một số chỉnh sửa token để đảm bảo visual
+consistency giữa light/dark.
 
 ---
 
+## 1 — Tóm tắt thay đổi UX chính
+
+- Light theme đổi sang "coffee" palette (ấm, paper-like). Tokens đã cập nhật
+	trong `design-system/colors.css`.
+- Dark theme chỉnh để tránh "đen tuyệt đối" — surfaces nhẹ hơn, shadow mềm
+	hơn để dễ đọc.
+- Prev / Next: di chuyển xuống bên dưới phần đáp án (vị trí trực quan hơn khi
+	người dùng trả lời liên tiếp). Nút `Prev`/`Next` là `secondary` / `primary`
+	tuân theo token màu.
+- Music control: thêm input nhận YouTube link, `Play` và `Clear` button, và
+	một iframe embed dùng dạng `https://www.youtube.com/embed/<id>?autoplay=1`.
+	Giá trị có thể được persist (localStorage key: `musicUrl`) nếu cần.
+- Theme toggle: nút chuyển sáng/tối đặt trong hero; lưu lựa chọn vào
+	`localStorage` key `theme` và áp dụng bằng `document.documentElement.setAttribute('data-theme', theme)`.
+- Dọn dẹp: đã loại bỏ các component không dùng (ví dụ `src/components/ui/Button.jsx`, `src/components/ui/ProgressSummary.jsx`).
+
+---
+
+## 2 — Theme & Color Tokens (developer notes)
+
+- Light tokens (coffee) — đã cập nhật trong `design-system/colors.css`:
+	`--canvas`, `--surface`, `--surface-raised`, `--surface-subtle`,
+	`--ink-900`..`--ink-100`, `--accent`, `--accent-mid`, `--accent-soft`.
+- Dark overrides live under `[data-theme="dark"]` in the same file.
+- Gradient and overlay guidance: prefer token-driven colors. Nếu cần overlay
+	alpha on surface, define RGB tokens to be used inside `rgba()`:
+
+	- `--surface-raised-rgb: 248,242,236;` (light) and dark variant under `[data-theme="dark"]`
+	- `--surface-rgb: 251,247,242;`
+
+	Use like `background: linear-gradient(180deg, rgba(var(--surface-raised-rgb), 0.96), rgba(var(--surface-rgb), 0.96));`
+
+- Accessibility: keep contrast >= 4.5:1 for body text; test badges and
+	selected states with grayscale to ensure shape/icon signals exist.
+
+---
+
+## 3 — Navigation (Prev / Next)
+
+- Layout: `Prev / Next` buttons are rendered below the answer options and the
+	feedback bar. They sit in a small action row centered horizontally on mobile
+	and aligned to the right on wide screens.
+- Behavior:
+	- `Prev` goes to previous question (disabled on first question).
+	- `Next` goes to next question (disabled on last question).
+	- `Next` is `primary` when it proceeds; `Prev` is `default/secondary`.
+
+CSS notes: use `--r-md` radius for these buttons and `--shadow-xs` for subtle lift.
+
+---
+
+## 4 — Music (YouTube) control
+
+- UX: a compact input field (placeholder: "YouTube link (optional)") with two
+	inline buttons: `Play` and `Clear`.
+- Play flow: parse the provided URL to extract the video id (helper `toYouTubeEmbed()`),
+	set `embedUrl` and mount an iframe with autoplay query. `Clear` removes the
+	embed and clears the field.
+- Persisting: optional; app currently supports saving to `localStorage` key
+	`musicUrl` if desired by product.
+
+Security note: do not accept arbitrary HTML; construct the embed URL only from
+an extracted video id.
+
+---
+
+## 5 — Theme Toggle behaviour
+
+- Toggle control in the hero bar switches between `light` and `dark`.
+- Persist selection: `localStorage.setItem('theme', theme)`.
+- On initial load, app checks `localStorage` then falls back to
+	`window.matchMedia('(prefers-color-scheme: dark)').matches` if unset.
+
+---
+
+## 6 — Developer implementation notes (files changed)
+
+- `design-system/colors.css`
+	- Light tokens now use a coffee/warm-neutral palette; dark overrides tuned.
+	- Add RGB tokens (`--surface-raised-rgb`, `--surface-rgb`) if overlay alpha
+		is required.
+- `src/styles.css`
+	- Replace hard-coded whites/gradients with token references (use var tokens
+		and RGB variables for rgba where necessary).
+- `src/App.jsx`
+	- Theme state and persistence logic; theme toggle control in hero.
+- `src/components/QuestionDetail.jsx`
+	- Moved Prev/Next rendered below answers; added YouTube music input + Play/Clear
+		+ iframe embed handling and toYouTubeEmbed util.
+- `src/lib/storage.js`
+	- Centralise localStorage keys (e.g., `theme`, optional `musicUrl`, app state).
+
+---
+
+## 7 — Notes & checklist for final polish
+
+- Verify remaining occurrences of color literals or rgba(var(...)) patterns and
+	either define the needed `-rgb` tokens or convert to token-only backgrounds.
+- Test contrast and visual comfort in both themes with sample question flows.
+- Consider persisting the music URL if user feedback shows preference.
+
+---
+
+## 8 — How to test locally
+
+Run the dev server and exercise these flows:
+
+```bash
+npm install
+npm run dev
+```
+
+1. Toggle theme in the hero; confirm `data-theme` attribute and that surfaces
+	 use the coffee palette in light and the tuned surfaces in dark.
+2. Open a question, use the YouTube input: paste a YouTube watch URL, click
+	 `Play` → embedded player should appear and start playing.
+3. Select answers, confirm feedback bar shows and `Prev/Next` are under the
+	 answers and behave correctly.
+
+If anything looks off, adjust tokens in `design-system/colors.css` and run
+another quick check.
+
+---
+
+If you want, tôi có thể:
+- commit các thay đổi này lên một branch và tạo PR, hoặc
+- chạy `npm run dev` để bạn kiểm tra trực tiếp.
+
+
 ## 1. Design Philosophy
 
-### Tone of Voice
-- **Energetic** (không boring)
-- **Supportive** (chúng tôi ở bên bạn)
-- **Real** (không fake marketing)
-- **Fast** (mobile + instant feedback)
-- **Fun** (nhưng không childish)
+### Định hướng thẩm mỹ
 
-### Visual Identity
-Kết hợp:
-- **Modern gradient colors** (vibrancy)
-- **Bold typography** (personality)
-- **Smooth animations** (feel alive)
-- **Clear micro-interactions** (dopamine hits)
-- **Gen Z approved icons & emojis** (relatability)
+Không phải "UI kit sạch bóng." Không phải "dashboard màu xanh mặc định."
+
+Giao diện này cần cảm giác như một **cuốn sổ tay nghiên cứu được thiết kế kỹ** —
+warm, có chiều sâu, đáng tin cậy trong nhiều giờ học liên tục.
+
+### Năm nguyên tắc cốt lõi
+
+1. **Serif cho danh tính, Sans cho dữ liệu.**
+Heading dùng Instrument Serif để tạo cảm giác học thuật và bản sắc riêng.
+Mọi label, số liệu, button dùng DM Sans cho độ rõ ràng tối đa.
+
+2. **Màu ấm làm nền — màu lạnh làm accent.**
+Canvas ấm (`#F5F4F0`) tạo sự thư giãn. Accent xanh lam đậm (`#1A3FA8`) là
+điểm nhấn duy nhất, không cạnh tranh với nội dung câu hỏi.
+
+3. **State phải đọc được ngay, không cần đoán.**
+Đúng / sai / chưa làm / đang chọn — mỗi trạng thái dùng tối thiểu hai tín hiệu
+(màu + hình dạng / icon), không phụ thuộc chỉ một kênh cảm giác.
+
+4. **Hệ thống phân cấp bằng spacing và typography, không bằng màu sắc.**
+Tránh dùng card màu nặng, block màu lớn, hay gradient trang trí.
+Phân cấp đến từ kích thước chữ, weight, khoảng cách và border mỏng.
+
+5. **Quiet interface, loud content.**
+Giao diện đủ yên tĩnh để câu hỏi là thứ nổi bật nhất trong viewport.
 
 ---
 
 ## 2. Color System
 
-### Core Palette - VIBRANT & DYNAMIC
+### Core Palette
 
-#### Primary Gradient (Main Brand)
-```
-Gradient: #6366F1 (Indigo) → #8B5CF6 (Purple) → #D946EF (Magenta)
-Hex values:
-- color.primary-start: #6366F1
-- color.primary-mid: #8B5CF6
-- color.primary-end: #D946EF
-```
-*Used for: Main CTAs, highlight, active states, gradients*
+css
 
-#### Secondary Accent (Neon Energy)
 ```
-- color.accent-neon: #00D9FF (Cyan/Electric Blue)
-- color.accent-hot: #FF006E (Hot Pink)
-- color.accent-lime: #06FFA5 (Lime Green)
+--canvas:          #F5F4F0   /* Nền tổng thể — ấm, không trắng thuần */
+--surface:         #FDFCFA   /* Surface thứ cấp */
+--surface-raised:  #FFFFFF   /* Card nổi — panel, question area */
+--surface-subtle:  #EEE9E0   /* Hover state, chip active background */
+
+--ink-900: #1A1612   /* Text chính — không phải đen thuần */
+--ink-700: #3D3730   /* Text thứ cấp quan trọng (option text) */
+--ink-500: #7A7066   /* Label, meta, mô tả */
+--ink-300: #B8B0A6   /* Placeholder, disabled, border light */
+--ink-100: #E8E2DA   /* Divider, progress track */
 ```
 
-#### Surface & Background
+### Accent & Semantic
+
+css
+
 ```
-- color.canvas: #0F0F1E (Deep dark navy - optional dark mode vibes)
-- color.surface-light: #FFFFFF (Pure white for cards)
-- color.surface-elevated: #F8F9FF (Subtle purple tint)
-- color.surface-subtle: #F3F4F9 (Soft background)
+--accent:        #1A3FA8              /* Navy blue — màu nhấn duy nhất */
+--accent-mid:    #2E5FD4              /* Lighter shade cho hover, eyebrow */
+--accent-soft:   rgba(26,63,168,0.08) /* Selected state background */
+--accent-softer: rgba(26,63,168,0.04) /* Subtle tint */
+
+--success:      #1C7A50              /* Xanh lá — chỉ cho đúng/correct */
+--success-soft: rgba(28,122,80,0.08)
+
+--danger:       #B83232              /* Đỏ đất — chỉ cho sai/wrong */
+--danger-soft:  rgba(184,50,50,0.08)
+
+--border:       rgba(26,22,18,0.08)  /* Border mặc định */
+--border-strong: rgba(26,22,18,0.14) /* Border nổi hơn, input, option */
 ```
 
-#### Text Colors
-```
-- color.text-primary: #0F0F1E (Dark navy)
-- color.text-secondary: #6B7280 (Medium gray)
-- color.text-tertiary: #9CA3AF (Light gray)
-- color.text-inverse: #FFFFFF (White on dark)
-- color.text-interactive: #6366F1 (Clickable text)
-```
+### Usage Rules
 
-#### Semantic Feedback (with POP!)
-```
-✅ Correct Answer:
-   - color.success: #06FFA5 (Bright lime green)
-   - color.success-soft: rgba(6, 255, 165, 0.15)
-   - color.success-glow: rgba(6, 255, 165, 0.3)
+MàuĐược dùng choKhông dùng cho`--accent` (navy)Navigation, selected state, primary button, progress barDecoration, icon màu đơn thuần`--success` (green)Đáp án đúng, badge "đúng", stat cardBất kỳ nội dung không phải correctness`--danger` (red)Đáp án sai, badge "sai", stat cardWarning, alert không liên quan đến quizCanvas ấmNền app, nền input, nền chipCard nổi — card dùng `--surface-raised`
 
-❌ Wrong Answer:
-   - color.danger: #FF006E (Hot pink)
-   - color.danger-soft: rgba(255, 0, 110, 0.15)
-   - color.danger-glow: rgba(255, 0, 110, 0.3)
-
-⚠️ Warning/Neutral:
-   - color.warning: #FFA500 (Orange)
-   - color.warning-soft: rgba(255, 165, 0, 0.15)
-
-ℹ️ Info:
-   - color.info: #00D9FF (Cyan)
-   - color.info-soft: rgba(0, 217, 255, 0.15)
-```
-
-#### Borders & Separators
-```
-- color.border-light: rgba(99, 102, 241, 0.2)
-- color.border-medium: rgba(99, 102, 241, 0.4)
-- color.border-focus: #6366F1
-- color.divider-subtle: rgba(0, 0, 0, 0.06)
-```
+> 
+> **Quy tắc tuyệt đối:** Không có màu accent nào xuất hiện trên cùng một component
+> trừ khi nó mang nghĩa trạng thái cụ thể (selected, correct, wrong).
 
 ---
 
 ## 3. Typography
 
 ### Font Stack
+
+css
+
 ```
-'Inter', 'Segoe UI', -apple-system, 'Be Vietnam Pro', sans-serif
+/* Display / Heading */
+'Instrument Serif', Georgia, 'Times New Roman', serif
+
+/* Body / UI / Data */
+'DM Sans', 'Helvetica Neue', system-ui, sans-serif
 ```
-**Why?**
-- Inter: Modern, super clean, Gen Z approved
-- Be Vietnam Pro: Perfect Vietnamese diacritics
-- Fallbacks: macOS/Windows/web safe
 
-### Type Scale (Clean & Bold)
+**Lý do chọn bộ đôi này:**
 
-| Token | Size / Weight / Line-height | Usage |
-|-------|---------------------------|-------|
-| `type.display` | 56px / 700 / 1.1 | Hero/page title |
-| `type.h1` | 40px / 700 / 1.2 | Main heading |
-| `type.h2` | 32px / 700 / 1.3 | Section title |
-| `type.h3` | 24px / 600 / 1.4 | Subsection |
-| `type.body` | 16px / 400 / 1.6 | Reading text |
-| `type.body-strong` | 16px / 600 / 1.6 | Emphasized |
-| `type.label` | 14px / 600 / 1.5 | Button/chip text |
-| `type.caption` | 13px / 500 / 1.4 | Helper text |
-| `type.micro` | 12px / 500 / 1.3 | Tiny labels |
+- Instrument Serif — hiện đại, dễ đọc ở màn hình retina, có nét học thuật không quá formal.
 
-### Weight Strategy
-- **400**: Body copy, neutral text
-- **500**: Labels, UI text
-- **600**: Buttons, badges, emphasis
-- **700**: Headings, strong titles
-- *Avoid 800+* - makes it look aggressive
+- DM Sans — geometric nhẹ, optical sizing tốt ở 9–40px, dễ đọc tiếng Việt có dấu.
+
+### Type Scale
+
+TokenFontSizeWeightLine-heightDùng cho`hero-title`Serif36px4001.15Page title chính`panel-title`Sans15px6001.3Left panel header`question-text`Sans17px5001.6Nội dung câu hỏi`option-text`Sans14.5px4001.5Text đáp án`stat-value`Serif28–32px4001.0Số liệu stat card`body`Sans14px4001.6Mô tả, meta`label`Sans13px5001.35Button, chip`eyebrow`Sans11px6001.2Section label trên`caption`Sans11–12px5001.3Metadata phụ, page info
 
 ### Letter Spacing
-- Display/headings: `-0.02em` (tight, modern)
-- Body: `0` (normal)
-- Labels: `0.3px` (subtle breathing room)
+
+css
+
+```
+/* Eyebrow / uppercase label */
+letter-spacing: 0.1em;
+
+/* Heading serif */
+letter-spacing: -0.01em;
+
+/* Option ID badge */
+letter-spacing: 0.02em;
+
+/* Body text */
+letter-spacing: 0;
+```
+
+### Vietnamese Typography Rules
+
+- Font phải load full `Vietnamese` subset từ Google Fonts hoặc self-host.
+
+- Không dùng `font-synthesis: none` — để browser render diacritics tự nhiên.
+
+- Minimum body text: 14px. Không nhỏ hơn 12px ở bất kỳ UI element nào.
+
+- Line-height tối thiểu 1.5 cho paragraph, 1.3 cho label — dấu tiếng Việt cần không gian dọc.
 
 ---
 
-## 4. Spacing & Layout
-
-### Base Unit: 8px Grid
-```
-space-1: 4px
-space-2: 8px
-space-3: 12px
-space-4: 16px
-space-5: 20px
-space-6: 24px
-space-8: 32px
-space-10: 40px
-space-12: 48px
-space-16: 64px
-space-20: 80px
-```
-
-### Component Padding
-- Buttons: `12px 24px` (space-3 + space-6)
-- Cards: `space-6` (24px)
-- Input fields: `space-4` (16px)
-- List items: `space-4` vertical
-
-### Section Spacing
-- Between major sections: `space-12 to space-16`
-- Between card groups: `space-8`
-- Dense list items: `space-2` to `space-3`
-
----
-
-## 5. Rounded Corners (Radius)
-
-```
-radius-xs: 6px      (tiny buttons, tags)
-radius-sm: 10px     (inputs, small cards)
-radius-md: 14px     (standard cards)
-radius-lg: 18px     (prominent cards)
-radius-xl: 24px     (hero surfaces)
-radius-pill: 9999px (pill buttons, chips)
-```
-
----
-
-## 6. Shadows & Elevation
-
-### Shadow Tokens
-```
-shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06)
-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08)
-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12)
-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16)
-shadow-focus: 0 0 0 4px rgba(99, 102, 241, 0.25)
-```
-
-### Glow Effects (NEW - Gen Z Love)
-```
-glow-success: 0 0 20px rgba(6, 255, 165, 0.4)
-glow-danger: 0 0 20px rgba(255, 0, 110, 0.4)
-glow-primary: 0 0 24px rgba(99, 102, 241, 0.35)
-```
-
----
-
-## 7. Motion & Animation
-
-### Timing
-```
-motion-quick: 100ms    (micro-interactions, icon pulse)
-motion-fast: 150ms     (button click, state change)
-motion-medium: 220ms   (card reveal, panel slide)
-motion-slow: 300ms     (modal open, major layout shift)
-```
-
-### Easing
-- **ease-out**: `cubic-bezier(0.34, 1.56, 0.64, 1)` (bouncy but elegant)
-- **ease-in-out**: `cubic-bezier(0.4, 0, 0.2, 1)` (smooth transitions)
-- **ease-in**: `cubic-bezier(0.4, 0, 1, 1)` (exits)
-
-### Animation Patterns
-- **Pulse**: Correct answer → green glow pulse
-- **Shake**: Wrong answer → subtle shake + red glow
-- **Slide Up**: Card appear with slight fade-in
-- **Scale In**: Badge/counter updates with tiny scale pop
-- **Gradient Shift**: Hover on CTAs → subtle gradient animation
-
----
-
-## 8. Components
-
-### 8.1 Button Styles
-
-#### Primary CTA
-```
-Background: Gradient #6366F1 → #D946EF
-Text: White, 600 weight
-Padding: 12px 32px
-Radius: 10px
-Hover: Gradient shift + lift shadow
-Pressed: Scale 0.98
-Focus: 4px glow ring
-```
-
-#### Secondary
-```
-Background: rgba(99, 102, 241, 0.1)
-Border: 2px solid #6366F1
-Text: #6366F1
-Hover: Background fill stronger
-```
-
-#### Text/Minimal
-```
-Background: Transparent
-Text: #6366F1, 600 weight
-Hover: Background rgba(99, 102, 241, 0.05)
-Underline on hover (optional)
-```
-
-#### Danger CTA
-```
-Background: #FF006E
-Text: White
-Only use for destructive actions
-```
-
-### 8.2 Input Fields
-```
-Background: #F8F9FF
-Border: 2px solid #E5E7EB
-Border radius: 10px
-Padding: 12px 16px
-Font: 16px/400
-
-States:
-- Focus: Border #6366F1 + glow ring
-- Error: Border #FF006E + error message below
-- Filled: Keep clean, no change
-```
-
-### 8.3 Answer Option Cards
-```
-Background: #FFFFFF
-Border: 2px solid #E5E7EB
-Radius: 14px
-Padding: 16px
-Full-width, stacked vertically
-
-Hover State:
-- Border color: #6366F1
-- Shadow: shadow-sm
-- Scale: 1.01
-
-Selected (Before Answering):
-- Border: 2px solid #6366F1
-- Background: rgba(99, 102, 241, 0.05)
-
-✅ Correct State:
-- Background: rgba(6, 255, 165, 0.15)
-- Border: 2px solid #06FFA5
-- Left border glow: 4px #06FFA5
-- Glow effect: 0 0 20px rgba(6, 255, 165, 0.3)
-
-❌ Wrong State:
-- Background: rgba(255, 0, 110, 0.15)
-- Border: 2px solid #FF006E
-- Left border glow: 4px #FF006E
-- Shake animation on reveal
-- Glow effect: 0 0 20px rgba(255, 0, 110, 0.3)
-```
-
-### 8.4 Progress Cards (Summary Stats)
-```
-Background: Gradient light to lighter
-Border: None
-Radius: 18px
-Padding: 24px
-Shadow: shadow-sm
-
-Semantic backgrounds:
-- Total: Gradient light purple
-- Correct: Gradient light green
-- Wrong: Gradient light red
-- Progress: Gradient primary colors
-
-Typography:
-- Number: 40px / 700 weight (bold!)
-- Label: 14px / 500 weight, secondary color
-```
-
-### 8.5 Status Badge
-```
-Correct: Background #06FFA5, Text dark, radius-pill
-Wrong: Background #FF006E, Text white, radius-pill
-Pending: Background #FFA500, Text dark, radius-pill
-Size: 28px height
-```
-
-### 8.6 Question List Item
-```
-Background: #F8F9FF
-Border: 1px solid rgba(99, 102, 241, 0.2)
-Radius: 12px
-Padding: 12px 16px
-Margin: 8px 0
-
-Hover: 
-- Border color strengthen
-- Shadow-xs appear
-- Transform: translateX(4px)
-
-Active/Selected:
-- Border: 2px solid #6366F1
-- Left accent bar: 4px solid #6366F1
-- Background: rgba(99, 102, 241, 0.08)
-```
-
----
-
-## 9. Layout Grid
+## 4. Layout Architecture
 
 ### Page Structure
-```
-Desktop (1440px max):
-- Header/topbar: Full width, sticky
-- Content: Two-column (adaptive)
-  - Left sidebar: 340px (question list)
-  - Right panel: flexible (question detail)
-- Footer: Optional
 
-Mobile:
-- Stack single column
-- Sidebar → collapsible sheet/drawer
-- Full width content
+Single-column study layout (left panel removed — focused reading and
+answering flow):
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  HERO                                                       │
+│  Title (Serif) + Description    [Actions: nav + reset]      │
+├────────────────────────────────────────────────────────────┤
+│  STATS STRIP (5 columns)                                    │
+│  Total │ Done │ Correct │ Wrong │ Progress                  │
+├────────────────────────────────────────────────────────────┤
+│  QUESTION PANEL (main) — Question header, options, feedback │
+│  Navigation (Prev / Next) placed below options              │
+└────────────────────────────────────────────────────────────┘
 ```
 
-### Responsive Breakpoints
+### Desktop Specifications
+
+- `max-width: 1200px` — không rộng hơn để duy trì line-length tốt.
+
+- Single-column main content: question panel is the central focus; hero and
+	stats strip remain full-width within the container.
+
+- Card padding chuẩn: `28px 32px` (hero), `22px 28px` (question area), `18px 20px` (panel).
+
+### Mobile Specifications (
+
 ```
-Mobile: < 640px
-Tablet: 640px - 1024px
-Desktop: > 1024px
+Structure:
+├── Eyebrow (label nhỏ + line accent)
+├── Title (Serif, 36px, có * italic cho phần phụ)
+├── Description (13.5px, muted)
+└── Action group (Prev / Next / Review wrong / Reset)
+```
+
+**Eyebrow pattern:**
+
+css
+
+```
+.hero-eyebrow::before {
+	content: '';
+	display: inline-block;
+	width: 20px; height: 2px;
+	background: var(--accent-mid);
+}
+```
+
+Tạo visual anchor mà không cần icon.
+
+---
+
+### 5.2 Stats Cards
+
+Mỗi card có một **colored top bar** (3px) thay vì toàn bộ card màu.
+Tránh visual noise, đồng thời giữ state differentiation rõ ràng.
+
+```
+stat-card
+├── top bar (3px, muted | accent | success | danger)
+├── label (11px, uppercase, muted)
+├── value (Serif 28–32px)
+└── sub-label (11.5px, muted)
+		[optional: progress bar for Tiến độ card]
+```
+
+**Color mapping:**
+
+CardTop barTổng câu`--ink-300` (muted)Đã làm`--accent`Đúng`--success`Sai`--danger`Tiến độ`--accent` + progress bar
+
+---
+
+<!-- Left panel removed in v2.1: question navigator component deprecated -->
+
+### 5.4 Question Header
+
+```
+structure:
+├── q-meta row
+│   ├── "CÂU 7" (eyebrow style, accent-mid)
+│   └── "6/270 đã làm" + badges (5 đúng / 1 sai)
+└── question-text (17px / 500 / 1.6)
+```
+
+Badges dùng compact pill — không dùng icon nặng, không dùng chip to.
+
+---
+
+### 5.5 Answer Options
+
+Đây là component quan trọng nhất. Mỗi option là **large tap target** với 4 sub-elements:
+
+```
+option (border-radius: 12px)
+├── option-id badge (32×32px, rounded 8px)
+├── option-text (14.5px)
+└── option-indicator (icon trạng thái, ẩn mặc định)
+```
+
+**States matrix:**
+
+StateOption borderOption bgID badgeText colorIndicatorDefault`--border-strong``--surface-raised`canvas bg, ink-700`--ink-700`hiddenHover`--ink-300``--surface-subtle`———Selectedaccent 30%`--accent-softer`navy solid`--ink-700`—Correctsuccess 30%success 5%success solid`--success`✓Wrongdanger 30%danger 5%danger solid`--danger`✗
+
+> 
+> **Grayscale test:** Selected vs Correct vs Wrong phải phân biệt được dù loại bỏ màu.
+> Tín hiệu thứ hai là: ID badge fill pattern + indicator icon.
+ 
+---
+
+### 5.6 Feedback Bar
+
+Xuất hiện bên dưới options sau khi chọn đáp án. Không dùng modal, không dùng toast.
+
+css
+
+```
+/* Correct */
+background: var(--success-soft);
+border: 1px solid rgba(28,122,80,0.2);
+color: var(--success);
+
+/* Wrong */
+background: var(--danger-soft);
+border: 1px solid rgba(184,50,50,0.2);
+color: var(--danger);
+```
+
+**Copy pattern:**
+
+- Correct: `"Chính xác. [Giải thích ngắn]"`
+
+- Wrong: `"Chưa đúng. Đáp án là [X — Nội dung đáp án]. [Giải thích ngắn nếu có]"`
+
+Không dùng icon animation phức tạp. Không có confetti. Phản hồi cần bình tĩnh, rõ ràng.
+
+---
+
+### 5.7 Buttons
+
+VariantBackgroundBorderTextDùng choPrimary`--accent``--accent`whiteCâu tiếp, hành động chínhDefault`--surface-raised``--border-strong``--ink-700`Câu trước, actions phụGhosttransparenttransparent`--ink-500`Ôn câu sai (ít nhấn)Danger`--danger-soft`danger 20%`--danger`Xóa toàn bộ (destructive)
+
+Padding chuẩn: `8px 16px`. Border-radius: `12px`. Font: 13px / 500.
+
+---
+
+## 6. Radius & Shadow
+
+### Border Radius
+
+css
+
+```
+--r-sm:   8px    /* Option ID badge, input, small elements */
+--r-md:   12px   /* Button, chip, feedback bar, stats row */
+--r-lg:   16px   /* Option card, filter section */
+--r-xl:   22px   /* Hero panel, left panel, right panel (main cards) */
+--r-pill: 9999px /* Badge, chip pill, progress bar */
+```
+
+### Shadow
+
+Sử dụng rất hạn chế — chủ yếu dùng border để phân tách layer.
+
+css
+
+```
+--shadow-xs: 0 1px 2px rgba(26,22,18,0.04)   /* Nội bộ nhỏ */
+--shadow-sm: 0 4px 12px rgba(26,22,18,0.06)  /* Card nổi nhẹ nếu cần */
+--shadow-focus: 0 0 0 3px rgba(26,63,168,0.2) /* Focus ring input */
+```
+
+> 
+> **Quy tắc:** Không dùng `--shadow-md` trở lên cho UI thông thường.
+> Shadow nặng = giao diện nặng nề, không phù hợp môi trường học tập.
+> 
+---
+
+## 7. Motion & Interaction
+
+### Transition Defaults
+
+css
+
+```
+transition: all 0.14s ease;        /* Option hover, chip, button */
+transition: opacity 0.18s ease;    /* Feedback bar appear */
+transition: border-color 0.12s;    /* Input focus */
+```
+
+### Rules
+
+- Không dùng animation bounce, spring, hay slide phức tạp.
+
+- Feedback bar xuất hiện bằng `display: block` — không cần fade nếu tốc độ 
+
+css
+
+```
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
 ```
 
 ---
 
-## 10. Logo & Branding
+## 8. Accessibility
 
-### Logo Placement
+### Contrast Requirements
+
+ElementRatio tối thiểuStandardBody text trên canvas7:1AAAQuestion text7:1AAAPlaceholder text3:1AA LargeButton label4.5:1AABadge text (success/danger)4.5:1AA
+
+Ink-900 (`#1A1612`) trên canvas (`#F5F4F0`) đạt ~15:1.
+Success text (`#1C7A50`) trên success-soft đạt ~5.2:1 ✓
+
+### Focus Management
+
+css
+
 ```
-Top-left of header: 
-- Small logo mark + "HCM Quiz" text
-- Or just mark if space tight
-- Use gradient: Primary indigo to magenta
-- Size: 32px height
-
-Alternative: Gradient wordmark
+/* Visible focus ring cho keyboard navigation */
+:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(26,63,168,0.25);
+	border-radius: inherit;
+}
 ```
 
-### Logo Design (Suggested)
-```
-Option 1: Gradient circle with "H" monogram
-Option 2: Gradient badge with quiz icon
-Option 3: Modern "HCM Q" text with gradient
+- Option cards phải focusable bằng keyboard (`tabindex="0"`).
 
-Color: #6366F1 → #D946EF gradient
-Don't use flat colors - gradient is key
+- Sau khi chọn đáp án, focus chuyển tự động sang feedback bar.
+
+- Pagination buttons luôn visible, không ẩn khi disabled — chỉ thay đổi style.
+
+### ARIA
+
+html
+
+```
+
+	Đúng
+	5 câu đã chinh phục
+
+```
+
+### Vietnamese Diacritics
+
+- Font phải có full Vietnamese glyph set — kiểm tra: ắ ặ ổ ợ ữ ướ ẫ.
+
+- Không dùng `font-feature-settings` ảnh hưởng đến dấu.
+
+- Test ở 12px minimum — dấu huyền/sắc/nặng phải còn rõ.
+
+---
+
+## 9. Implementation Notes
+
+### CSS Architecture
+
+css
+
+```
+/* Cấu trúc gợi ý cho CSS custom properties */
+:root {
+	/* 1. Color tokens */
+	/* 2. Typography tokens */
+	/* 3. Spacing/radius/shadow tokens */
+}
+
+/* Component classes: .hero, .stat-card, .option, .chip, .feedback-bar */
+/* State modifiers: .active, .correct, .wrong, .selected, .disabled */
+/* Utility: .success, .danger, .accent (chỉ cho text color) */
+```
+
+### Component Checklist
+
+Trước khi ship mỗi component, kiểm tra:
+
+- Có ít nhất 2 tín hiệu phân biệt state (màu + shape/icon)
+
+- Đọc được ở chế độ grayscale
+
+- Focus ring visible khi navigate bằng keyboard
+
+- Vietnamese diacritics không bị cắt ở mọi size
+
+- Tap target tối thiểu 44px trên mobile
+
+- Contrast AA tối thiểu cho tất cả text
+
+### Performance
+
+- Google Fonts: load với `display=swap` và `subset=latin,vietnamese`.
+
+- Không preload font nặng hơn 2 weights.
+
+- Không dùng background-image hay gradient phức tạp — tất cả là flat color + border.
+
+- Tránh `box-shadow` nhiều layer cho elements lặp lại (options list).
+
+### Long Session Ergonomics
+
+- Canvas ấm (`#F5F4F0`) giảm eye strain so với pure white trong môi trường sáng.
+
+- Line-height rộng (1.6) cho question text giúp đọc nhanh hơn tiếng Việt nhiều dấu.
+
+Main question panel nên là anchor khi người dùng scroll để tránh mất focus nội dung.
+
+- Không có animation flash hay color pop bất ngờ gây mất tập trung.
+
+---
+
+## 10. Design Tokens Quick Reference
+
+css
+
+```
+:root {
+	/* Color */
+	--canvas:          #F5F4F0;
+	--surface:         #FDFCFA;
+	--surface-raised:  #FFFFFF;
+	--surface-subtle:  #EEE9E0;
+	--ink-900: #1A1612; --ink-700: #3D3730;
+	--ink-500: #7A7066; --ink-300: #B8B0A6; --ink-100: #E8E2DA;
+	--accent:        #1A3FA8;
+	--accent-mid:    #2E5FD4;
+	--accent-soft:   rgba(26,63,168,0.08);
+	--accent-softer: rgba(26,63,168,0.04);
+	--success:       #1C7A50;
+	--success-soft:  rgba(28,122,80,0.08);
+	--danger:        #B83232;
+	--danger-soft:   rgba(184,50,50,0.08);
+	--border:        rgba(26,22,18,0.08);
+	--border-strong: rgba(26,22,18,0.14);
+
+	/* Typography */
+	--font-serif: 'Instrument Serif', Georgia, serif;
+	--font-sans:  'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+
+	/* Radius */
+	--r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+	--r-xl: 22px; --r-pill: 9999px;
+
+	/* Shadow */
+	--shadow-xs:    0 1px 2px rgba(26,22,18,0.04);
+	--shadow-sm:    0 4px 12px rgba(26,22,18,0.06);
+	--shadow-focus: 0 0 0 3px rgba(26,63,168,0.20);
+}
 ```
 
 ---
 
-## 11. Feedback Panel Design
-
-### Correct Answer State
-```
-Background: rgba(6, 255, 165, 0.1)
-Border-left: 4px solid #06FFA5
-Radius: 14px
-Padding: 20px
-
-Content:
-- ✅ Emoji or icon (16px)
-- Heading: "Đúng rồi!" (600 weight, dark)
-- Copy: Brief explanation (400 weight, secondary)
-- Optional: Show correct answer highlight
-
-Animation:
-- Slide up from bottom
-- Glow pulse on appear
-- Smooth 220ms ease-out
-```
-
-### Wrong Answer State
-```
-Background: rgba(255, 0, 110, 0.1)
-Border-left: 4px solid #FF006E
-Animation: Shake + glow pulse
-Content: Show selected vs. correct answer
-```
-
----
-
-## 12. Dark Mode (Future-Proof)
-
-While primary is light, add token variants for dark:
-```
-@dark mode:
-- canvas: #0F0F1E
-- surface: #1A1B2E
-- text-primary: #FFFFFF
-- borders: lighter (higher alpha)
-- All glows become more prominent
-```
-
----
-
-## 13. Micro-interactions & Feel
-
-### Button Click
-- Scale down 2%
-- Shadow lift
-- 100ms snappy response
-
-### Correct Answer Reveal
-- Card slides up with fade
-- Green glow pulses (2 times)
-- Checkmark icon animate from 0 to 1
-
-### Wrong Answer Reveal
-- Card shakes (3 times, subtle)
-- Red glow pulses
-- X icon animate
-
-### Progress Update
-- Number scales up slightly (1.05x)
-- Brief color highlight flash
-
-### Filter/Category Change
-- Smooth fade transition (150ms)
-- List items stagger enter (30ms apart)
-
----
-
-## 14. Writing Style
-
-### Tone Examples
-```
-Correct: "🎯 Đúng rồi! Bạn chọn đúng cách."
-Wrong: "Oops! Bạn chọn A, nhưng đáp án là D."
-Pending: "Ready? Chọn đáp án để tiếp tục →"
-Empty: "Không có câu hỏi. Khởi tạo bộ quiz mới?"
-```
-
-### Key Principles
-- Conversational (như nói chuyện với bạn)
-- Emoji use is OK (not forced)
-- Vietnamese diacritics MUST be perfect
-- Short sentences, active voice
-
----
-
-## 15. Do's & Don'ts (Gen Z Edition)
-
-### ✅ DO
-- Use gradient strategically (not everywhere)
-- Make success feel good (glow, pulse, dopamine)
-- Keep loading states fun (animated gradient)
-- Use modern sans-serif consistently
-- Make mobile feel native & fast
-- Use white space intentionally
-- Test dark mode compatibility
-
-### ❌ DON'T
-- Multiple conflicting accent colors
-- Cheesy animations or skeuomorphism
-- Flat design (boring)
-- Outdated UI patterns
-- Slow transitions (feels sluggish)
-- Overly formal copy
-- Decorative shadows everywhere
-- Ignore Vietnamese text rendering
-
----
-
-## 16. File Structure
-
-```
-/design-system/
-  - colors.css (CSS variables)
-  - typography.css
-  - spacing.css
-  - shadows.css
-  - animations.css
-  
-/components/
-  - button.jsx
-  - input.jsx
-  - card.jsx
-  - badge.jsx
-  - answer-card.jsx
-  - progress-summary.jsx
-  
-/assets/
-  - logo-dark.svg
-  - logo-gradient.svg
-  - icons/ (24px set)
-  - illustrations/ (optional)
-```
-
----
-
-## 17. Implementation Checklist
-
-- [ ] Set up CSS custom properties for all tokens
-- [ ] Create button component (5 variants)
-- [ ] Answer card with 3 states (default, selected, answered)
-- [ ] Progress cards with gradient backgrounds
-- [ ] Question list with smooth interactions
-- [ ] Feedback panel with animations
-- [ ] Logo in header (gradient)
-- [ ] Mobile responsiveness fully tested
-- [ ] Dark mode ready (CSS variables prepared)
-- [ ] Vietnamese text rendering perfect
-- [ ] Animation performance optimized
-- [ ] Accessibility checks (WCAG AA)
-- [ ] Test on low-end mobile devices
-
----
-
-## 18. Source of Truth
-
-**This file is the design contract.** 
-If implementation conflicts with this, update this file first before shipping changes.
-Keep the Gen Z energy, the vibrance, and the dopamine-rewarding feedback loop.
-
-Good luck! Make it snappy 🚀
+DESIGN.md v2.0 — HCM Quiz Review*
+*Revised: Refined Academic Editorial direction*
+*Prioritizes: typography identity, warm palette, clear state system, long-session comfort*
+thay xong thì thực hiện nó

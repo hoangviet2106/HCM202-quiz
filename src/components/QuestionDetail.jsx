@@ -1,4 +1,13 @@
+import { useState } from 'react';
 import { QuestionOption } from './QuestionOption';
+
+function toYouTubeEmbed(url) {
+    if (!url) return null;
+    // Try to extract video id from common YouTube URL formats
+    const idMatch = url.match(/(?:v=|\/embed\/|\.be\/)([A-Za-z0-9_-]{6,})/);
+    const id = idMatch ? idMatch[1] : null;
+    return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
+}
 
 function renderFeedback(answerRecord, question) {
     if (!answerRecord) {
@@ -41,7 +50,11 @@ export function QuestionDetail({
     visibleWrongCount,
     filterMode,
     emptyState,
+    onNext,
+    onPrev,
 }) {
+    const [musicInput, setMusicInput] = useState('');
+    const [embedUrl, setEmbedUrl] = useState(null);
     if (!question) {
         return (
             <section className="panel detail-panel">
@@ -87,6 +100,58 @@ export function QuestionDetail({
             </div>
 
             <div className="feedback-panel">{renderFeedback(answerRecord, question)}</div>
+
+            <div className="detail-actions">
+                <div className="nav-buttons">
+                    <button type="button" className="btn-secondary" onClick={onPrev} disabled={!onPrev}>
+                        Câu trước
+                    </button>
+                    <button type="button" className="btn-secondary" onClick={onNext} disabled={!onNext}>
+                        Câu tiếp
+                    </button>
+                </div>
+
+                <div className="music-control">
+                    <label className="field-label">Phát nhạc (YouTube link)</label>
+                    <div className="music-row">
+                        <input
+                            type="text"
+                            className="music-input"
+                            placeholder="https://www.youtube.com/watch?v=... hoặc https://youtu.be/..."
+                            value={musicInput}
+                            onChange={(e) => setMusicInput(e.target.value)}
+                        />
+                        <button
+                            type="button"
+                            className="btn-secondary"
+                            onClick={() => setEmbedUrl(toYouTubeEmbed(musicInput))}
+                        >
+                            Play
+                        </button>
+                        <button
+                            type="button"
+                            className="btn-secondary destructive"
+                            onClick={() => {
+                                setMusicInput('');
+                                setEmbedUrl(null);
+                            }}
+                        >
+                            Clear
+                        </button>
+                    </div>
+                    {embedUrl ? (
+                        <div className="music-player">
+                            <iframe
+                                title="background-music"
+                                src={embedUrl}
+                                width="100%"
+                                height="120"
+                                allow="autoplay; encrypted-media"
+                            />
+                        </div>
+                    ) : null}
+                </div>
+            </div>
 
             {question.explanation ? (
                 <section className="explanation-box">

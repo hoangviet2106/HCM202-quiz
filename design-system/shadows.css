@@ -1,36 +1,38 @@
-/* Utility shadow classes mapped to design tokens */
+/* Utility shadow classes mapped to design tokens (minimal set per v2.0)
+   Tokens are primarily defined in colors.css; redefine small focused tokens here
+   for clarity and local overrides if needed. */
+
 :root {
-    /* tokens are defined in colors.css already */
+    --shadow-xs: 0 1px 2px rgba(26,22,18,0.04);
+    --shadow-sm: 0 4px 12px rgba(26,22,18,0.06);
+    --shadow-focus: 0 0 0 3px rgba(26,63,168,0.20);
 }
 
 .shadow-xs {
     box-shadow: var(--shadow-xs) !important;
 }
-
 .shadow-sm {
     box-shadow: var(--shadow-sm) !important;
 }
-
 .shadow-md {
-    box-shadow: var(--shadow-md) !important;
+    /* map to a light card shadow */
+    box-shadow: 0 6px 14px rgba(26,22,18,0.04) !important;
 }
-
 .shadow-lg {
-    box-shadow: var(--shadow-lg) !important;
+    box-shadow: 0 10px 28px rgba(26,22,18,0.05) !important;
 }
-
 .shadow-focus {
     box-shadow: var(--shadow-focus) !important;
 }
 
 .glow-success {
-    box-shadow: var(--glow-success) !important;
+    box-shadow: 0 0 14px rgba(28,122,80,0.12) !important;
 }
 
 .glow-danger {
-    box-shadow: var(--glow-danger) !important;
+    box-shadow: 0 0 14px rgba(184,50,50,0.12) !important;
 }
 
 .glow-primary {
-    box-shadow: var(--glow-primary) !important;
+    box-shadow: 0 0 18px rgba(26,63,168,0.12) !important;
 }

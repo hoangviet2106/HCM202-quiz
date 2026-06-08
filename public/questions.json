@@ -24,7 +24,7 @@
           "label": "Là tất cả những vần đề trên"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -130,22 +130,26 @@
     {
       "id": "q-006",
       "number": 6,
-      "prompt": "Vấn đề nào mà giáo trình Tư tưởng Hồ Chí Minh chưa nêu khi nói vê ý nghĩa học tập môn học này đôi với sinh viên? Nâng cao năng lực tư duy lý luận và phương pháp công tác Bôi dưỡng phâm chât đạo đức cách mạng và rèn luyện bản lĩnh chính trị Nâng cao lòng tự hào dân tộc, tự hào vê Bác kính yêu Bồi dưỡng tình yêu thiên nhiên, ý thức bảo vệ môi trường",
+      "prompt": "Vấn đề nào mà giáo trình Tư tưởng Hồ Chí Minh chưa nêu khi nói vê ý nghĩa học tập môn học này đôi với sinh viên?",
       "options": [
         {
           "id": "A",
-          "label": "Nâng cao năng lực tư duy lý luận và phương pháp công tác Bôi dưỡng phâm chât đạo đức cách mạng và rèn luyện bản lĩnh chính trị Nâng cao lòng tự hào dân tộc"
+          "label": "Nâng cao năng lực tư duy lý luận và phương pháp công tác"
         },
         {
           "id": "B",
-          "label": "tự hào vê Bác kính yêu Bồi dưỡng tình yêu thiên nhiên"
+          "label": "Bôi dưỡng phâm chât đạo đức cách mạng và rèn luyện bản lĩnh chính trị"
         },
         {
           "id": "C",
-          "label": "ý thức bảo vệ môi trường"
+          "label": "Nâng cao lòng tự hào dân tộc, tự hào vê Bác kính yêu"
+        },
+        {
+          "id": "D",
+          "label": "Bồi dưỡng tình yêu thiên nhiên, ý thức bảo vệ môi trường"
         }
       ],
-      "correctOptionId": "C",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -176,9 +180,26 @@
     {
       "id": "q-008",
       "number": 8,
-      "prompt": "Tư tưởng nào của cụ Nguyễn Sinh Sắc có ảnh hưởng quyêt định đên tư tưởng xây dựng một nhà nước của dân, do dân, vì dân của Hô Chí Minh? Thương yêu người nghèo Lòng yêu nước Lòng căm thù bọn xâm lược Tư tưởng “thân dân”",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Tư tưởng nào của cụ Nguyễn Sinh Sắc có ảnh hưởng quyêt định đên tư tưởng xây dựng một nhà nước của dân, do dân, vì dân của Hô Chí Minh?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Thương yêu người nghèo"
+        },
+        {
+          "id": "B",
+          "label": "Lòng yêu nước"
+        },
+        {
+          "id": "C",
+          "label": "Lòng căm thù bọn xâm lược"
+        },
+        {
+          "id": "D",
+          "label": "Tư tưởng “thân dân”"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -284,9 +305,26 @@
     {
       "id": "q-013",
       "number": 13,
-      "prompt": "Lý do chính của việc Nguyễn Ái Quốc đến Pháp? Để học nghề Để tìm hiểu văn minh Pháp Để vận động nhân dân Pháp ủng hộ cách mạng Việt Nam Vì nguồn gốc mọi đau khổ của nhân dân Việt Nam là ở tại “chính quốc”",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Lý do chính của việc Nguyễn Ái Quốc đến Pháp?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Để học nghề"
+        },
+        {
+          "id": "B",
+          "label": "Để tìm hiểu văn minh Pháp"
+        },
+        {
+          "id": "C",
+          "label": "Để vận động nhân dân Pháp ủng hộ cách mạng Việt Nam"
+        },
+        {
+          "id": "D",
+          "label": "Vì nguồn gốc mọi đau khổ của nhân dân Việt Nam là ở tại “chính quốc”"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -367,9 +405,26 @@
     {
       "id": "q-017",
       "number": 17,
-      "prompt": "“Luận cương của Lênin làm cho tôi rât phân khởi. sáng tỏ, tin tưởng biệt bao. Tôi vui mừng đên phát khóc lên. Ngôi một mình trong buông mà tôi nói to lên như đang nói trước quân chúng đông đảo: Hỡi đông bào bị đoạ đây đau khô! Đây là cái cân thiệt cho chúng ta, đây là con đường giải phóng chúng ta”. Câu trên được trích dẫn từ tác phẩm nào của Nguyền Ái Quốc? Đời hoạt động của Hô Chủ tịch Con đường dân tôi đến với chủ nghĩa Lênin Lênin vĩ đại Cách mạng tháng Mười và con đường giải phóng thuộc địa",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "“Luận cương của Lênin làm cho tôi rât phân khởi. sáng tỏ, tin tưởng biệt bao. Tôi vui mừng đên phát khóc lên. Ngôi một mình trong buông mà tôi nói to lên như đang nói trước quân chúng đông đảo: Hỡi đông bào bị đoạ đây đau khô! Đây là cái cân thiệt cho chúng ta, đây là con đường giải phóng chúng ta”. Câu trên được trích dẫn từ tác phẩm nào của Nguyền Ái Quốc?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Đời hoạt động của Hô Chủ tịch"
+        },
+        {
+          "id": "B",
+          "label": "Con đường dân tôi đến với chủ nghĩa Lênin"
+        },
+        {
+          "id": "C",
+          "label": "Lênin vĩ đại"
+        },
+        {
+          "id": "D",
+          "label": "Cách mạng tháng Mười và con đường giải phóng thuộc địa"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -575,9 +630,26 @@
     {
       "id": "q-026",
       "number": 26,
-      "prompt": "Nguyễn Tất Thành nói: “Tôi muôn đi ra ngoài xem nước Pháp và các nước khác làm như thế nào, tôi sẽ trở về giúp đồng bào chúng ta”. Câu nói đó vào thời gian nào? 6/1909 7/1910 6/1911 6/1912",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Nguyễn Tất Thành nói: “Tôi muôn đi ra ngoài xem nước Pháp và các nước khác làm như thế nào, tôi sẽ trở về giúp đồng bào chúng ta”. Câu nói đó vào thời gian nào?",
+      "options": [
+        {
+          "id": "A",
+          "label": "6/1909"
+        },
+        {
+          "id": "B",
+          "label": "7/1910"
+        },
+        {
+          "id": "C",
+          "label": "6/1911"
+        },
+        {
+          "id": "D",
+          "label": "6/1912"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -683,67 +755,76 @@
     {
       "id": "q-031",
       "number": 31,
-      "prompt": "Nguyễn Tất Thành lấy tên là Nguyễn Ái Quốc vào thời gian nào? Khi Bác lên tàu từ bên Nhà Rồng năm 1911 Khi Bác tham gia sáng lập Đảng Cộng sản Pháp tại Đại hội Tua tháng 12/1920 Tại Hội nghị Vécxay (Pháp) ngày 18/6/1919 Khi Bác sang Liên Xô làm việc ở Ban Phương Đông của Quôc tế Cộng sản tháng 6/1923",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Nguyễn Tất Thành lấy tên là Nguyễn Ái Quốc vào thời gian nào?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Khi Bác lên tàu từ bên Nhà Rồng năm 1911"
+        },
+        {
+          "id": "B",
+          "label": "Khi Bác tham gia sáng lập Đảng Cộng sản Pháp tại Đại hội Tua tháng 12/1920"
+        },
+        {
+          "id": "C",
+          "label": "Tại Hội nghị Vécxay (Pháp) ngày 18/6/1919"
+        },
+        {
+          "id": "D",
+          "label": "Khi Bác sang Liên Xô làm việc ở Ban Phương Đông của Quôc tế Cộng sản tháng 6/1923"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
       "id": "q-032",
       "number": 32,
-      "prompt": "“Luận cương của V. I. Lênin làm cho tôi rât cảm động, phân khởi, sáng tỏ, tin tưởng biết bao. Tôi vui mừng đên phát khóc lên. Ngồi một mình trong buồng mà tôi nói to lên như đang nói trước quần chúng đông đảo: hỡi đông bào bị đọa đày đau khổ. Đây là cái cần thiết cho chúng ta, đây là con đường giải phóng của chúng ta”. Nguyễn Ái Quốc nói câu ây khi đang ở đâu? Luân Đôn, Anh Quảng Châu, Trung Quôc Paris, Pháp Máxcova, Liên Xô",
+      "prompt": "“Luận cương của V. I. Lênin làm cho tôi rât cảm động, phân khởi, sáng tỏ, tin tưởng biết bao. Tôi vui mừng đên phát khóc lên. Ngồi một mình trong buồng mà tôi nói to lên như đang nói trước quần chúng đông đảo: hỡi đông bào bị đọa đày đau khổ. Đây là cái cần thiết cho chúng ta, đây là con đường giải phóng của chúng ta”. Nguyễn Ái Quốc nói câu ây khi đang ở đâu?",
       "options": [
         {
           "id": "A",
-          "label": "Luân Đôn"
+          "label": "Luân Đôn, Anh"
         },
         {
           "id": "B",
-          "label": "Anh Quảng Châu"
+          "label": "Quảng Châu, Trung Quôc"
         },
         {
           "id": "C",
-          "label": "Trung Quôc Paris"
+          "label": "Paris, Pháp"
         },
         {
           "id": "D",
-          "label": "Pháp Máxcova"
-        },
-        {
-          "id": "E",
-          "label": "Liên Xô"
+          "label": "Máxcova, Liên Xô"
         }
       ],
-      "correctOptionId": null,
+      "correctOptionId": "C",
       "tags": []
     },
     {
       "id": "q-033",
       "number": 33,
-      "prompt": "Thay mặt Hội những người Việt Nam yêu nước tại Pháp.",
+      "prompt": "Thay mặt Hội những người Việt Nam yêu nước tại Pháp.Nguyễn Ái Quốc gửi đến Hội nghị Vécxay Bản yêu sách của nhân dân Việt Nam gôm mấy điêm?",
       "options": [
         {
           "id": "A",
-          "label": "Nguyễn Ái Quốc gửi đến Hội nghị Vécxay Bản yêu sách của nhân dân Việt Nam gôm mấy điêm?"
-        },
-        {
-          "id": "B",
           "label": "6 điểm"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "8 điểm"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "9 điểm"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "12 điểm"
         }
       ],
-      "correctOptionId": "C",
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -899,9 +980,26 @@
     {
       "id": "q-040",
       "number": 40,
-      "prompt": "Bản chất của chủ nghĩa tư bản “là một con đỉa có 1 cái vòi bám vào giai câp vô sản ở chính quốc và 1 cái vòi khác bám vào giai cấp vô sản ở thuộc địa. Nếu muốn giết con vật ấy, người ta phải đồng thời cắt cả hai vòi. Nếu người ta chỉ cắt một vòi thôi thì cái vòi còn lại kia vẫn tiếp tục hút máu của giai câp vô sản, con vật vẫn tiếp tục sống và cái vòi bị cắt đứt lại sẽ mọc ra” câu nói đó trích từ tác phẩm nào của Nguyễn Ái Quốc? Con rồng tre Bản án chế độ thực dân Pháp Đường cách mệnh V.I. Lênin và các dân tộc phương Đông",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Bản chất của chủ nghĩa tư bản “là một con đỉa có 1 cái vòi bám vào giai câp vô sản ở chính quốc và 1 cái vòi khác bám vào giai cấp vô sản ở thuộc địa. Nếu muốn giết con vật ấy, người ta phải đồng thời cắt cả hai vòi. Nếu người ta chỉ cắt một vòi thôi thì cái vòi còn lại kia vẫn tiếp tục hút máu của giai câp vô sản, con vật vẫn tiếp tục sống và cái vòi bị cắt đứt lại sẽ mọc ra” câu nói đó trích từ tác phẩm nào của Nguyễn Ái Quốc?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Con rồng tre"
+        },
+        {
+          "id": "B",
+          "label": "Bản án chế độ thực dân Pháp"
+        },
+        {
+          "id": "C",
+          "label": "Đường cách mệnh V.I."
+        },
+        {
+          "id": "D",
+          "label": "Lênin và các dân tộc phương Đông"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -957,46 +1055,76 @@
     {
       "id": "q-043",
       "number": 43,
-      "prompt": "“Công nông là gôc cách mệnh, còn học trò, nhà buôn nhỏ, địa chủ nhỏ. là bầu bạn cách mệnh của công nông”. Nguyễn Ái Quốc viết câu đó trong tác phâm nào? Bản án chê độ thực dân Pháp Nông dân Trung Quôc VI. Lênin và Phương Đông Đường cách mệnh",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "“Công nông là gôc cách mệnh, còn học trò, nhà buôn nhỏ, địa chủ nhỏ. là bầu bạn cách mệnh của công nông”. Nguyễn Ái Quốc viết câu đó trong tác phâm nào?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Bản án chê độ thực dân Pháp"
+        },
+        {
+          "id": "B",
+          "label": "Nông dân Trung Quôc"
+        },
+        {
+          "id": "C",
+          "label": "VI. Lênin và Phương Đông"
+        },
+        {
+          "id": "D",
+          "label": "Đường cách mệnh"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
       "id": "q-044",
       "number": 44,
-      "prompt": "“Trước hêt phải có Đảng cách mệnh đê trong thì vận động và tô chức dân chúng, ngoài thì liên lạc với dân tộc bị áp bức và vô sản giai câp mọi nơi.” Câu nói đó được Nguyễn Ái Quốc việt trong tác phẩm nào? Đường cách mệnh Sửa đổi lối làm việc Đây “công lý” của thực dân Pháp ở Đông Dương V.I.Lênin và Phương Đông",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "“Trước hêt phải có Đảng cách mệnh đê trong thì vận động và tô chức dân chúng, ngoài thì liên lạc với dân tộc bị áp bức và vô sản giai câp mọi nơi.” Câu nói đó được Nguyễn Ái Quốc việt trong tác phẩm nào?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Đường cách mệnh"
+        },
+        {
+          "id": "B",
+          "label": "Sửa đổi lối làm việc"
+        },
+        {
+          "id": "C",
+          "label": "Đây “công lý” của thực dân Pháp ở Đông Dương"
+        },
+        {
+          "id": "D",
+          "label": "V.I.Lênin và Phương Đông"
+        }
+      ],
+      "correctOptionId": "A",
       "tags": []
     },
     {
       "id": "q-045",
       "number": 45,
-      "prompt": "“Tất cả các dân tộc trên thế giới đều sinh ra bình đẳng, dân tộc nào cũng có quyền sống, quyền sung sướng và quyên tự do”.",
+      "prompt": "“Tất cả các dân tộc trên thế giới đều sinh ra bình đẳng, dân tộc nào cũng có quyền sống, quyền sung sướng và quyên tự do”. Câu trên trích từ tác phâm nào của Hô Chí Minh?",
       "options": [
         {
           "id": "A",
-          "label": "Câu trên trích từ tác phâm nào của Hô Chí Minh?"
-        },
-        {
-          "id": "B",
           "label": "Bản án chế độ thực dân Pháp"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Chính cương sách lược vắn tắt"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Tuyên ngôn độc lập"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Đường cách mệnh"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -1177,9 +1305,26 @@
     {
       "id": "q-053",
       "number": 53,
-      "prompt": "Theo tư tưởng Hô Chí Minh, lực lượng giải phóng dân tộc, giải phóng giai câp, giải phóng con người là: Đảng cộng sản Các lực lượng cách mạng thế giới Khối đại đoàn kêt dân tộc mà nòng cốt là liên minh công nông, trí thức Tât cả các lực lượng trên",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Theo tư tưởng Hô Chí Minh, lực lượng giải phóng dân tộc, giải phóng giai câp, giải phóng con người là:",
+      "options": [
+        {
+          "id": "A",
+          "label": "Đảng cộng sản"
+        },
+        {
+          "id": "B",
+          "label": "Các lực lượng cách mạng thế giới"
+        },
+        {
+          "id": "C",
+          "label": "Khối đại đoàn kêt dân tộc mà nòng cốt là liên minh công nông, trí thức"
+        },
+        {
+          "id": "D",
+          "label": "Tât cả các lực lượng trên"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -1210,67 +1355,76 @@
     {
       "id": "q-055",
       "number": 55,
-      "prompt": "“Cách mạng là phá cái cũ đổi ra cái mới, cái xấu đổi ra cái tốt”.",
+      "prompt": "“Cách mạng là phá cái cũ đổi ra cái mới, cái xấu đổi ra cái tốt”.Câu trên được trích từ tác phẩm nào của Hô Chí Minh?",
       "options": [
         {
           "id": "A",
-          "label": "Câu trên được trích từ tác phẩm nào của Hô Chí Minh?"
-        },
-        {
-          "id": "B",
           "label": "Sửa đổi lề lối làm việc"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Bản án chê độ thực dân Pháp"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Đường Cách mệnh"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Đạo đức cách mạng"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
       "id": "q-056",
       "number": 56,
-      "prompt": "“Hỡi đồng bào yêu quý! Giờ quyêt định cho vận mệnh của dân tộc ta đã đến. Toàn quốc đồng bào hãy đứng dậy, đem sức ta mà giải phóng cho ta”.",
+      "prompt": "“Hỡi đồng bào yêu quý! Giờ quyêt định cho vận mệnh của dân tộc ta đã đến. Toàn quốc đồng bào hãy đứng dậy, đem sức ta mà giải phóng cho ta”. Lời kêu gọi trên được trích từ tác phẩm nào?",
       "options": [
         {
           "id": "A",
-          "label": "Lời kêu gọi trên được trích từ tác phẩm nào?"
-        },
-        {
-          "id": "B",
           "label": "Quân lệnh số một của uỷ ban khởi nghĩa toàn quốc"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Lời kêu gọi toàn quốc kháng chiến của Hồ Chủ Tịch"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Hiệu triệu tổng khởi nghĩa"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Tuyên ngôn độc lập"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
       "id": "q-057",
       "number": 57,
-      "prompt": "Chọn phương án trả lời đúng với tư tưởng Hô Chí Minh: A Cách mạng giải phóng dân tộc giành thắng lợi đồng thời với cách mạng vô sản ở chính quốc B. Cách mạng giải phóng dân tộc giành thắng lợi sau cách mạng vô sản ở chính quốc C. Cách mạng giải phóng dân tộc có khả năng giành thắng lợi trước cách mạng vô sản ở chính quôc D. Thắng lợi của cách mạng giải phóng dân tộc phụ thuộc vào thắng lợi của cách mạng vô sản ở chính quốc",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Chọn phương án trả lời đúng với tư tưởng Hô Chí Minh:",
+      "options": [
+        {
+          "id": "A",
+          "label": "A Cách mạng giải phóng dân tộc giành thắng lợi đồng thời với cách mạng vô sản ở chính quốc"
+        },
+        {
+          "id": "B",
+          "label": "B. Cách mạng giải phóng dân tộc giành thắng lợi sau cách mạng vô sản ở chính quốc"
+        },
+        {
+          "id": "C",
+          "label": "C. Cách mạng giải phóng dân tộc có khả năng giành thắng lợi trước cách mạng vô sản ở chính quôc"
+        },
+        {
+          "id": "D",
+          "label": "D. Thắng lợi của cách mạng giải phóng dân tộc phụ thuộc vào thắng lợi của cách mạng vô sản ở chính quốc"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -1280,18 +1434,22 @@
       "options": [
         {
           "id": "A",
-          "label": "Con bạch tuộc Đ. Con rồng tre"
+          "label": "Con bạch tuộc"
         },
         {
           "id": "B",
-          "label": "Con đỉa 2 vòi"
+          "label": "Đ. Con rồng tre"
         },
         {
           "id": "C",
+          "label": "Con đỉa 2 vòi"
+        },
+        {
+          "id": "D",
           "label": "Con voi"
         }
       ],
-      "correctOptionId": "B",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -1322,30 +1480,26 @@
     {
       "id": "q-060",
       "number": 60,
-      "prompt": "Hồ Chí Minh là “Người khởi xướng cuộc đâu tranh giải phóng của các dân tộc thuộc địa trong thê kỷ XX”.",
+      "prompt": "Hồ Chí Minh là “Người khởi xướng cuộc đâu tranh giải phóng của các dân tộc thuộc địa trong thê kỷ XX”. Ai đánh giá sự nghiệp của Hô Chí Minh như trên?",
       "options": [
         {
           "id": "A",
-          "label": "Ai đánh giá sự nghiệp của Hô Chí Minh như trên?"
-        },
-        {
-          "id": "B",
           "label": "Đảng cộng sản Việt Nam"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Ủy ban bảo vệ hòa bình thế giới"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Hội chữ thập đỏ quốc tế"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Cơ quan văn hoá - giáo dục của liên hợp quốc"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -1601,9 +1755,26 @@
     {
       "id": "q-071",
       "number": 71,
-      "prompt": "Ai là người đã có công lớn trong việc cứu Nguyễn Ái Quôc ra khỏi nhà tù của thực dân Anh ở Hông Kông? Tô mát Xautôn (phó Thông độc Hông Kông) Luật sư Lôdơbai (Lôdơbi) Luật sư Nôoen Piit Hồ Tùng Mậu",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Ai là người đã có công lớn trong việc cứu Nguyễn Ái Quôc ra khỏi nhà tù của thực dân Anh ở Hông Kông?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tô mát Xautôn (phó Thông độc Hông Kông)"
+        },
+        {
+          "id": "B",
+          "label": "Luật sư Lôdơbai (Lôdơbi)"
+        },
+        {
+          "id": "C",
+          "label": "Luật sư Nôoen Piit"
+        },
+        {
+          "id": "D",
+          "label": "Hồ Tùng Mậu"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -1659,38 +1830,51 @@
     {
       "id": "q-074",
       "number": 74,
-      "prompt": "Năm 1941, Nguyễn Ái Quốc viết một tác phẩm có câu mở đầu: “Dân ta phải biệt sử ta Cho tường gốc tích nước nhà Việt Nam” Đó là tác phẩm: Đường kách mệnh Lịch sử nước ta Bài ca du kích Đạo đức cách mạng",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Năm 1941, Nguyễn Ái Quốc viết một tác phẩm có câu mở đầu: “Dân ta phải biệt sử ta Cho tường gốc tích nước nhà Việt Nam” Đó là tác phẩm:",
+      "options": [
+        {
+          "id": "A",
+          "label": "Đường kách mệnh"
+        },
+        {
+          "id": "B",
+          "label": "Lịch sử nước ta"
+        },
+        {
+          "id": "C",
+          "label": "Bài ca du kích"
+        },
+        {
+          "id": "D",
+          "label": "Đạo đức cách mạng"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
       "id": "q-075",
       "number": 75,
-      "prompt": "Tháng 12/1944, Hồ Chí Minh triệu tập một sô cán bộ vê Pác Bó (Cao Bằng) để phổ biến chủ trương thành lập Quân giải phóng.",
+      "prompt": "Tháng 12/1944, Hồ Chí Minh triệu tập một sô cán bộ vê Pác Bó (Cao Bằng) để phổ biến chủ trương thành lập Quân giải phóng. Ai là người đã được Hô Chí Minh chỉ định đảm nhiệm công tác này?",
       "options": [
         {
           "id": "A",
-          "label": "Ai là người đã được Hô Chí Minh chỉ định đảm nhiệm công tác này?"
-        },
-        {
-          "id": "B",
           "label": "Vũ Anh"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Hoàng Văn Thái"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Võ Nguyên Giáp"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Phùng Chí Kiên"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -1771,30 +1955,26 @@
     {
       "id": "q-079",
       "number": 79,
-      "prompt": "“Chủ nghĩa xã hôi là lây nhà máy, xe lửa, ngân hàng… làm của chung. Ai làm nhiều thì ăn nhiều, ai làm ít thi ăn ít, ai không làm thì không ăn, tất nhiên là trừ những người già cả, đau yếu và trẻ con”.",
+      "prompt": "“Chủ nghĩa xã hôi là lây nhà máy, xe lửa, ngân hàng… làm của chung. Ai làm nhiều thì ăn nhiều, ai làm ít thi ăn ít, ai không làm thì không ăn, tất nhiên là trừ những người già cả, đau yếu và trẻ con”. Định nghĩa này nhấn mạnh lĩnh vực nào?",
       "options": [
         {
           "id": "A",
-          "label": "Định nghĩa này nhấn mạnh lĩnh vực nào?"
-        },
-        {
-          "id": "B",
           "label": "Chính trị"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Xã hội"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Kinh tế"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Văn hóa"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -2050,30 +2230,26 @@
     {
       "id": "q-090",
       "number": 90,
-      "prompt": "Đảng cộng sản là sản phẩm của sự kết hợp giữa chủ nghĩa Mác và phong trào công nhân.",
+      "prompt": "Đảng cộng sản là sản phẩm của sự kết hợp giữa chủ nghĩa Mác và phong trào công nhân. Ai nói về quy luật ra đời của Đảng cộng sản như trên?",
       "options": [
         {
           "id": "A",
-          "label": "Ai nói về quy luật ra đời của Đảng cộng sản như trên?"
-        },
-        {
-          "id": "B",
           "label": "CMác"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Lê-Nin"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Stalin"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Hồ Chí Minh"
         }
       ],
-      "correctOptionId": "C",
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -2304,15 +2480,15 @@
     {
       "id": "q-100",
       "number": 100,
-      "prompt": "“Đảng muốn vững, phải có chủ nghĩa làm cốt, trong Đảng ai cũng phải hiểu, ai cũng phải theo chủ nghĩa ấy, Đảng mà không có chủ nghĩa cũng như người không có trí khôn, tàu không có bàn chỉ nam”.",
+      "prompt": "“Đảng muốn vững, phải có chủ nghĩa làm cốt, trong Đảng ai cũng phải hiểu, ai cũng phải theo chủ nghĩa ấy, Đảng mà không có chủ nghĩa cũng như người không có trí khôn, tàu không có bàn chỉ nam”.Chủ nghĩa mà Hô Chí Minh nói ở đây là chủ nghĩa gì?",
       "options": [
         {
           "id": "A",
-          "label": "Chủ nghĩa mà Hô Chí Minh nói ở đây là chủ nghĩa gì?"
+          "label": "Chủ nghĩa quôc gia - dân tộc"
         },
         {
           "id": "B",
-          "label": "Chủ nghĩa quôc gia - dân tộc Đ. Chủ nghĩa tam dân"
+          "label": "Chủ nghĩa tam dân"
         },
         {
           "id": "C",
@@ -2404,9 +2580,26 @@
     {
       "id": "q-104",
       "number": 104,
-      "prompt": "Mục đích của Đảng lao động VN có thể gồm trong 8 chữ là; đoàn kết toàn dân, phụng sự Tổ Quốc. HCM viết câu trên vào thời gian nào ? 3//3/1950 3/3/1951 3/3/1952 3/3/1953",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Mục đích của Đảng lao động VN có thể gồm trong 8 chữ là; đoàn kết toàn dân, phụng sự Tổ Quốc. HCM viết câu trên vào thời gian nào ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "3//3/1950"
+        },
+        {
+          "id": "B",
+          "label": "3/3/1951"
+        },
+        {
+          "id": "C",
+          "label": "3/3/1952"
+        },
+        {
+          "id": "D",
+          "label": "3/3/1953"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -3237,9 +3430,26 @@
     {
       "id": "q-138",
       "number": 138,
-      "prompt": "Hồ Chí Minh quan niệm văn hóa phải ở trong chính trị và kinh tế. Điều đó có nghĩa là ? Văn hóa phải phục vụ chính trị Văn hóa phải thúc đẩy kinh tế phát triển Kinh tế chính trị cũng phải có tính văn hóa Tất cả các vấn đề trên",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Hồ Chí Minh quan niệm văn hóa phải ở trong chính trị và kinh tế. Điều đó có nghĩa là ?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Văn hóa phải phục vụ chính trị"
+        },
+        {
+          "id": "B",
+          "label": "Văn hóa phải thúc đẩy kinh tế phát triển"
+        },
+        {
+          "id": "C",
+          "label": "Kinh tế chính trị cũng phải có tính văn hóa"
+        },
+        {
+          "id": "D",
+          "label": "Tất cả các vấn đề trên"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -3670,67 +3880,76 @@
     {
       "id": "q-156",
       "number": 156,
-      "prompt": "Bài thơ sau của tác giả nào: “ Gạo đem vào giã bao đau đớn Gạo giã xong rồi trắng tựa bong Sống ở trên đời người cũng vậy Gian nam rèn luyện ắt thành công” Sóng Hồng Lê Đức Thọ Xuân Thủy Hồ Chí Minh",
-      "options": [],
-      "correctOptionId": null,
-      "tags": []
-    },
-    {
-      "id": "q-157",
-      "number": 157,
-      "prompt": "“ Những tư tưởng của Người là hiện thân của những khát vọng của các dân tộc trong việc khẳng định bản sắc dân tộc của mình và tiêu biểu cho việc thúc đẩy sự hiểu biết lẫn nhau”.",
+      "prompt": "Bài thơ sau của tác giả nào: “ Gạo đem vào giã bao đau đớn Gạo giã xong rồi trắng tựa bong Sống ở trên đời người cũng vậy Gian nam rèn luyện ắt thành công”",
       "options": [
         {
           "id": "A",
-          "label": "Ai đã nhận định về Bác Hồ như vậy?"
+          "label": "Sóng Hồng"
         },
         {
           "id": "B",
-          "label": "Đảng Cộng Sản Việt Nam"
+          "label": "Lê Đức Thọ"
         },
         {
           "id": "C",
-          "label": "Ủy ban bảo vệ hòa bình thế giới"
+          "label": "Xuân Thủy"
         },
         {
           "id": "D",
-          "label": "UNESCO"
-        },
-        {
-          "id": "E",
-          "label": "Hội nhân quyền quốc tế"
+          "label": "Hồ Chí Minh"
         }
       ],
       "correctOptionId": "D",
       "tags": []
     },
     {
-      "id": "q-158",
-      "number": 158,
-      "prompt": "“ Nước mất mà không biết là BẤT TRI, biết mà không chiến đấu cứu nước là BẤT TRUNG, chiến đấu mà không quên mình vì nước là BẤT DŨNG”.",
+      "id": "q-157",
+      "number": 157,
+      "prompt": "“ Những tư tưởng của Người là hiện thân của những khát vọng của các dân tộc trong việc khẳng định bản sắc dân tộc của mình và tiêu biểu cho việc thúc đẩy sự hiểu biết lẫn nhau”.Ai đã nhận định về Bác Hồ như vậy?",
       "options": [
         {
           "id": "A",
-          "label": "Ai nói với Nguyễn Tất Thành câu trên?"
+          "label": "Đảng Cộng Sản Việt Nam"
         },
         {
           "id": "B",
-          "label": "Nguyễn Sinh Sắc"
+          "label": "Ủy ban bảo vệ hòa bình thế giới"
         },
         {
           "id": "C",
-          "label": "Thầy giáo Vương Thúc Quý"
+          "label": "UNESCO"
         },
         {
           "id": "D",
+          "label": "Hội nhân quyền quốc tế"
+        }
+      ],
+      "correctOptionId": "C",
+      "tags": []
+    },
+    {
+      "id": "q-158",
+      "number": 158,
+      "prompt": "“ Nước mất mà không biết là BẤT TRI, biết mà không chiến đấu cứu nước là BẤT TRUNG, chiến đấu mà không quên mình vì nước là BẤT DŨNG”.Ai nói với Nguyễn Tất Thành câu trên?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Nguyễn Sinh Sắc"
+        },
+        {
+          "id": "B",
+          "label": "Thầy giáo Vương Thúc Quý"
+        },
+        {
+          "id": "C",
           "label": "Thầy giáo Hoàng Thông"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Thầy Lê Văn Miến"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -3761,9 +3980,26 @@
     {
       "id": "q-160",
       "number": 160,
-      "prompt": "Theo tư tưởng Hồ Chí Minh, trong cách mạng xã hội chủ nghĩa. Động lực nào quan trọng và quyết định nhất? Tiền vốn Tài nguyên thiên nhiên Người lao động Khoa học- kỹ thuật",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Theo tư tưởng Hồ Chí Minh, trong cách mạng xã hội chủ nghĩa. Động lực nào quan trọng và quyết định nhất?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tiền vốn"
+        },
+        {
+          "id": "B",
+          "label": "Tài nguyên thiên nhiên"
+        },
+        {
+          "id": "C",
+          "label": "Người lao động"
+        },
+        {
+          "id": "D",
+          "label": "Khoa học- kỹ thuật"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -3844,30 +4080,26 @@
     {
       "id": "q-164",
       "number": 164,
-      "prompt": "“ Việc gì có lợi cho dân, taphair hết sức làm, việc gì có hại cho dân, ta phải hết sức tránh”.",
+      "prompt": "“ Việc gì có lợi cho dân, taphair hết sức làm, việc gì có hại cho dân, ta phải hết sức tránh”,Câu trên trích từ bài viết nào của Hồ Chí Minh?",
       "options": [
         {
           "id": "A",
-          "label": "Câu trên trích từ bài viết nào của Hồ Chí Minh?"
-        },
-        {
-          "id": "B",
           "label": "Đường cách mệnh"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Sửa đổi lề lối làm việc"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Đạo đức cách mạng"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Thư gửi ủy ban nhân dân các kỳ, các tỉnh, huyện và làng 17-10-1945"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4073,30 +4305,26 @@
     {
       "id": "q-173",
       "number": 173,
-      "prompt": "Khi quân đồng minh sắp vào nước ta để tước khí giới cuat quân dội Nhật, hội văn hóa cứu quốc treo khẩu hiệu chào mừng, trong đó có khẩu hiệu “Nước Việt Nam của người Việt Nam. Độc lập hay là chết. Hoan hô những người giải phóng của chúng ta”.",
+      "prompt": "Khi quân đồng minh sắp vào nước ta để tước khí giới cuat quân dội Nhật, hội văn hóa cứu quốc treo khẩu hiệu chào mừng, trong đó có khẩu hiệu “Nước Việt Nam của người Việt Nam. Độc lập hay là chết. Hoan hô những người giải phóng của chúng ta”.Bác Hồ đã yêu cầu gỡ khẩu hiệu nào?",
       "options": [
         {
           "id": "A",
-          "label": "Bác Hồ đã yêu cầu gỡ khẩu hiệu nào?"
-        },
-        {
-          "id": "B",
           "label": "Nước Việt Nam của người Việt Nam"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Độc lập hay là chết"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Hoan hô những người giải phóng của chúng ta"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Cả 3 khẩu hiệu trên"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -4202,30 +4430,26 @@
     {
       "id": "q-178",
       "number": 178,
-      "prompt": "“Thực tiễn không có lý luận hướng dẫn thì thành thực tiễn mù quáng, dễ mắc bệnh chủ quan duy, ý chí. Lý luận mà không liên hệ với thực tiễn là lý luận suông”.",
+      "prompt": "“Thực tiễn không có lý luận hướng dẫn thì thành thực tiễn mù quáng, dễ mắc bệnh chủ quan duy, ý chí. Lý luận mà không liên hệ với thực tiễn là lý luận suông”. Ai nói câu trên?",
       "options": [
         {
           "id": "A",
-          "label": "Ai nói câu trên?"
-        },
-        {
-          "id": "B",
           "label": "C.Mác"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Hồ Chí Minh"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Mao Trạch Đông"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Stalin"
         }
       ],
-      "correctOptionId": "C",
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -4327,9 +4551,26 @@
     {
       "id": "q-183",
       "number": 183,
-      "prompt": "“Ôi sáng xuân nay, xuân bốn mốt Một trời biên giới nắng hoa mơ Bác về! im lặng con chim hót Thánh thót bờ lau. Vui ngẩn ngơ” Ai là tác giả của đoạn thơ trên đây? Tế Hanh Huy Cận Chế Lan Viên Tố Hữu",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "“Ôi sáng xuân nay, xuân bốn mốt Một trời biên giới nắng hoa mơ Bác về! im lặng con chim hót Thánh thót bờ lau. Vui ngẩn ngơ” Ai là tác giả của đoạn thơ trên đây?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tế Hanh"
+        },
+        {
+          "id": "B",
+          "label": "Huy Cận"
+        },
+        {
+          "id": "C",
+          "label": "Chế Lan Viên"
+        },
+        {
+          "id": "D",
+          "label": "Tố Hữu"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4360,26 +4601,26 @@
     {
       "id": "q-185",
       "number": 185,
-      "prompt": "Những trở lực ngăn cản sự nghiệp xây dựng chủ nghĩa xã hội, thường được chủ tịch Hồ Chí Minh gọi là giặc “nội xâm”. Đó là thứ giặc gì? Bọn phản động trong nước Bọn phản động quốc tế cấu kết với bọn phản động trong nước Một số cán bộ, công chức và quần chúng “bất mãn” với sự nghiệp cách mạng của nhân dân T ệ nạn “ quan liêu, tham ô, lãng phí”",
+      "prompt": "Những trở lực ngăn cản sự nghiệp xây dựng chủ nghĩa xã hội, thường được chủ tịch Hồ Chí Minh gọi là giặc “nội xâm”. Đó là thứ giặc gì?",
       "options": [
         {
           "id": "A",
-          "label": "Bọn phản động trong nước Bọn phản động quốc tế cấu kết với bọn phản động trong nước Một số cán bộ"
+          "label": "Bọn phản động trong nước"
         },
         {
           "id": "B",
-          "label": "công chức và quần chúng “bất mãn” với sự nghiệp cách mạng của nhân dân T ệ nạn “ quan liêu"
+          "label": "Bọn phản động quốc tế cấu kết với bọn phản động trong nước"
         },
         {
           "id": "C",
-          "label": "tham ô"
+          "label": "Một số cán bộ, công chức và quần chúng “bất mãn” với sự nghiệp cách mạng của nhân dân"
         },
         {
           "id": "D",
-          "label": "lãng phí”"
+          "label": "Tệ nạn “ quan liêu, tham ô, lãng phí”"
         }
       ],
-      "correctOptionId": "C",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4410,30 +4651,26 @@
     {
       "id": "q-187",
       "number": 187,
-      "prompt": "“Bất kì ai mà thật thà tán thành hòa bình, thống nhất, độc lập, dân chủ thì dù những người đó trước đây chống chúng ta, bây giờ chúng ta cũng thật thà đoàn kết với họ”.",
+      "prompt": "“Bất kì ai mà thật thà tán thành hòa bình, thống nhất, độc lập, dân chủ thì dù những người đó trước đây chống chúng ta, bây giờ chúng ta cũng thật thà đoàn kết với họ”.Tư tưởng này phù hợp với phương châm xử thế nào của dân tộc ta?",
       "options": [
         {
           "id": "A",
-          "label": "Tư tưởng này phù hợp với phương châm xử thế nào của dân tộc ta?"
-        },
-        {
-          "id": "B",
           "label": "Nợ máu phải trả bằng máu"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Ác giả ác báo"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Đời cha ăn mặn, đời con khát nước"
         },
         {
-          "id": "E",
-          "label": "Đ ánh kẻ chạy đi không đánh người chạy lại"
+          "id": "D",
+          "label": "Đánh kẻ chạy đi không đánh người chạy lại"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4464,9 +4701,26 @@
     {
       "id": "q-189",
       "number": 189,
-      "prompt": "Những cá nhân có thành tích xuất sắc thường được Bác Hồ tặng phần thưởng hiện vật mang hình ảnh Người. Đó là phần thưởng gì? Huân chương Huy chương Giấy khen Huy hiệu Bác Hồ",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Những cá nhân có thành tích xuất sắc thường được Bác Hồ tặng phần thưởng hiện vật mang hình ảnh Người. Đó là phần thưởng gì?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Huân chương"
+        },
+        {
+          "id": "B",
+          "label": "Huy chương"
+        },
+        {
+          "id": "C",
+          "label": "Giấy khen"
+        },
+        {
+          "id": "D",
+          "label": "Huy hiệu Bác Hồ"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4572,9 +4826,26 @@
     {
       "id": "q-194",
       "number": 194,
-      "prompt": "Khi học ở trường quốc học Huế, Nguyễn Tất Thành đã đọc sách của các nhà tư tưởng tiến bộ người Pháp. Họ là ai? Vôn-te Rút-xô Mon-tex-ki-xơ Cả 3 người trên",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Khi học ở trường quốc học Huế, Nguyễn Tất Thành đã đọc sách của các nhà tư tưởng tiến bộ người Pháp. Họ là ai?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Vôn-te"
+        },
+        {
+          "id": "B",
+          "label": "Rút-xô"
+        },
+        {
+          "id": "C",
+          "label": "Mon-tex-ki-xơ"
+        },
+        {
+          "id": "D",
+          "label": "Cả 3 người trên"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4630,17 +4901,51 @@
     {
       "id": "q-197",
       "number": 197,
-      "prompt": "Hồ Chí Minh khẳng định : “Nay tuy châu chấu đấu voi Nhưng mai voi sẽ bị lòi ruột ra” Điều khẳng định trên xuất hiện ở thời gian nào trong quá trình kháng chiến chống Pháp? 2/1951 4/1953 4/1952 1/1954",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Hồ Chí Minh khẳng định : “Nay tuy châu chấu đấu voi Nhưng mai voi sẽ bị lòi ruột ra” Điều khẳng định trên xuất hiện ở thời gian nào trong quá trình kháng chiến chống Pháp?",
+      "options": [
+        {
+          "id": "A",
+          "label": "2/1951"
+        },
+        {
+          "id": "B",
+          "label": "4/1953"
+        },
+        {
+          "id": "C",
+          "label": "4/1952"
+        },
+        {
+          "id": "D",
+          "label": "1/1954"
+        }
+      ],
+      "correctOptionId": "A",
       "tags": []
     },
     {
       "id": "q-198",
       "number": 198,
-      "prompt": "Bác Hồ nói : “ Ngày xưa các vua Hùng đã có công dựng nước, ngày nay bác cháu ta phải cùng nhau giữ lấy nước”. Bác Hồ nói câu trên ở đâu? Tân Trào Hà Nội Cổ Loa Đền Hùng",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Bác Hồ nói : “ Ngày xưa các vua Hùng đã có công dựng nước, ngày nay bác cháu ta phải cùng nhau giữ lấy nước”. Bác Hồ nói câu trên ở đâu?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tân Trào"
+        },
+        {
+          "id": "B",
+          "label": "Hà Nội"
+        },
+        {
+          "id": "C",
+          "label": "Cổ Loa"
+        },
+        {
+          "id": "D",
+          "label": "Đền Hùng"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4671,38 +4976,51 @@
     {
       "id": "q-200",
       "number": 200,
-      "prompt": "Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư. Phải giữ gìn Đảng ta thật trong sạch, phải xứng đáng là người lãnh đạo, là đâỳ tớ thật trung thành của nhân dân”. Câu nói trên của Hồ Chí Minh ở trong tác phẩm nào của người? Đạo đức cách mạng Đường cách mệnh Bản di chúc Sửa đổi lối việc làm",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Đảng ta là một Đảng cầm quyền. Mỗi đảng viên và cán bộ phải thật sự thấm nhuần đạo đức cách mạng, thật sự cần kiệm liêm chính, chí công vô tư. Phải giữ gìn Đảng ta thật trong sạch, phải xứng đáng là người lãnh đạo, là đâỳ tớ thật trung thành của nhân dân”. Câu nói trên của Hồ Chí Minh ở trong tác phẩm nào của người?",
+      "options": [
+        {
+          "id": "A",
+          "label": "Đạo đức cách mạng"
+        },
+        {
+          "id": "B",
+          "label": "Đường cách mệnh"
+        },
+        {
+          "id": "C",
+          "label": "Bản di chúc"
+        },
+        {
+          "id": "D",
+          "label": "Sửa đổi lối việc làm"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
       "id": "q-201",
       "number": 201,
-      "prompt": "“Đoàn kết là một truyền thống cực kỳ quý báu của Đảng ta, của dân ta. Các đồng chí từ trung ương đến các chi bộ cần phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình”.",
+      "prompt": "“Đoàn kết là một truyền thống cực kỳ quý báu của Đảng ta, của dân ta. Các đồng chí từ trung ương đến các chi bộ cần phải giữ gìn sự đoàn kết nhất trí của Đảng như giữ gìn con ngươi của mắt mình”.Hồ Chí Minh nói câu đó ở văn kiện nào?",
       "options": [
         {
           "id": "A",
-          "label": "Hồ Chí Minh nói câu đó ở văn kiện nào?"
-        },
-        {
-          "id": "B",
           "label": "Đạo đức cách mạng"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Sửa đổi lối việc làm"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Thường thức chính trị"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Bản di chúc"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -4720,7 +5038,7 @@
         },
         {
           "id": "C",
-          "label": "C ùng với chủ nghĩa Mác-Lenin, tư tưởng Hồ Chí Minh là nền tảng tư tưởng, kim chỉ nam cho hành động của Đảng ta"
+          "label": "Cùng với chủ nghĩa Mác-Lenin, tư tưởng Hồ Chí Minh là nền tảng tư tưởng, kim chỉ nam cho hành động của Đảng ta"
         },
         {
           "id": "D",
@@ -4883,9 +5201,26 @@
     {
       "id": "q-209",
       "number": 209,
-      "prompt": "Chọn cụm từ điền vào dấu ... Tháng 7 năm 1920, Hồ Chí Minh đọc. của V.I. Lênin Tác phẩm “Làm gì” Sơ thảo lần thứ nhất luận cương về các vấn đề dân tộc Sơ thảo lần thứ nhất luận cương về các vấn đề dân tộc và các vấn đề thuộc địa Tác phẩm “Nhà nước và cách mạng”",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Chọn cụm từ điền vào dấu ... Tháng 7 năm 1920, Hồ Chí Minh đọc. của V.I. Lênin",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tác phẩm “Làm gì”"
+        },
+        {
+          "id": "B",
+          "label": "Sơ thảo lần thứ nhất luận cương về các vấn đề dân tộc"
+        },
+        {
+          "id": "C",
+          "label": "Sơ thảo lần thứ nhất luận cương về các vấn đề dân tộc và các vấn đề thuộc địa"
+        },
+        {
+          "id": "D",
+          "label": "Tác phẩm “Nhà nước và cách mạng”"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -4916,17 +5251,51 @@
     {
       "id": "q-211",
       "number": 211,
-      "prompt": "Chọn cụm từ điền vào chỗ trống : “Toàn quốc đồng bào hãy đứng dậy...mà tự giải phóng cho ta” Dựa vào sự giúp đỡ của quốc tế Dựa vào sự đoàn kết toàn dân Dưới sự lãnh đạo của Đảng Đem sức ta",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Chọn cụm từ điền vào chỗ trống : “Toàn quốc đồng bào hãy đứng dậy...mà tự giải phóng cho ta”",
+      "options": [
+        {
+          "id": "A",
+          "label": "Dựa vào sự giúp đỡ của quốc tế"
+        },
+        {
+          "id": "B",
+          "label": "Dựa vào sự đoàn kết toàn dân"
+        },
+        {
+          "id": "C",
+          "label": "Dưới sự lãnh đạo của Đảng"
+        },
+        {
+          "id": "D",
+          "label": "Đem sức ta"
+        }
+      ],
+      "correctOptionId": "D",
       "tags": []
     },
     {
       "id": "q-212",
       "number": 212,
-      "prompt": "Chọn cụm từ điền vào chỗ trống : “Toàn thể dân tộc Việt Nam quyết đem...để giữ vững quyền tự do độc lập ấy” Toàn bộ sức lực Tất cả tinh thần và lực lượng Tất cả tinh thần và lực lượng, tính mạng và của cải Tất cả tinh thần và của cải",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Chọn cụm từ điền vào chỗ trống : “Toàn thể dân tộc Việt Nam quyết đem...để giữ vững quyền tự do độc lập ấy”",
+      "options": [
+        {
+          "id": "A",
+          "label": "Toàn bộ sức lực"
+        },
+        {
+          "id": "B",
+          "label": "Tất cả tinh thần và lực lượng"
+        },
+        {
+          "id": "C",
+          "label": "Tất cả tinh thần và lực lượng, tính mạng và của cải"
+        },
+        {
+          "id": "D",
+          "label": "Tất cả tinh thần và của cải"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -5107,9 +5476,26 @@
     {
       "id": "q-220",
       "number": 220,
-      "prompt": "Điền vào chỗ trống hoàn chỉnh câu thơ của HCM “rằng đây bốn biển một nhà . đều là anh em “ Lao động thế giới Bốn phương vô sản Vàng đen vàng trắng Đồng minh đồng chí",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Điền vào chỗ trống hoàn chỉnh câu thơ của HCM “rằng đây bốn biển một nhà . đều là anh em “",
+      "options": [
+        {
+          "id": "A",
+          "label": "Lao động thế giới"
+        },
+        {
+          "id": "B",
+          "label": "Bốn phương vô sản"
+        },
+        {
+          "id": "C",
+          "label": "Vàng đen vàng trắng"
+        },
+        {
+          "id": "D",
+          "label": "Đồng minh đồng chí"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -5265,22 +5651,26 @@
     {
       "id": "q-227",
       "number": 227,
-      "prompt": "Theo HCM, có mấy loại hình quá độ lên CNXH ? a. 1",
+      "prompt": "Theo HCM, có mấy loại hình quá độ lên CNXH ?",
       "options": [
         {
           "id": "A",
-          "label": "2"
+          "label": "1"
         },
         {
           "id": "B",
-          "label": "3."
+          "label": "2"
         },
         {
           "id": "C",
+          "label": "3"
+        },
+        {
+          "id": "D",
           "label": "4"
         }
       ],
-      "correctOptionId": "A",
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -5715,9 +6105,26 @@
     {
       "id": "q-245",
       "number": 245,
-      "prompt": "Chọn cụm từ đúng điền vào dấu (...) “Người cách mạng phải có. thì mới gánh được nặng và đi được xa” Trí tuệ Phương pháp cách mạng Đạo đức cách mạng Ý chí cách mạng",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Chọn cụm từ đúng điền vào dấu (...) “Người cách mạng phải có. thì mới gánh được nặng và đi được xa”",
+      "options": [
+        {
+          "id": "A",
+          "label": "Trí tuệ"
+        },
+        {
+          "id": "B",
+          "label": "Phương pháp cách mạng"
+        },
+        {
+          "id": "C",
+          "label": "Đạo đức cách mạng"
+        },
+        {
+          "id": "D",
+          "label": "Ý chí cách mạng"
+        }
+      ],
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -5823,7 +6230,7 @@
     {
       "id": "q-250",
       "number": 250,
-      "prompt": "Việ Nam hiện nay đang đối đầu với những nguy cơ nào",
+      "prompt": "Việt Nam hiện nay đang đối đầu với những nguy cơ nào",
       "options": [
         {
           "id": "A",
@@ -5998,30 +6405,26 @@
     {
       "id": "q-257",
       "number": 257,
-      "prompt": "“Non sông Việt Nam có trở lên tươi đẹp hay không, dân tộc Việt Nam có bước tới đài vinh quang để sánh vai with các cường quốc năm châu được hay không chính là nhờ một phần lớn ở công học tập của các em”.",
+      "prompt": "“Non sông Việt Nam có trở lên tươi đẹp hay không, dân tộc Việt Nam có bước tới đài vinh quang để sánh vai with các cường quốc năm châu được hay không chính là nhờ một phần lớn ở công học tập của các em”. HCM viết đoạn văn này nhân dịp:",
       "options": [
         {
           "id": "A",
-          "label": "HCM viết đoạn văn này nhân dịp:"
-        },
-        {
-          "id": "B",
           "label": "Khai giảng năm học đầu tiên của nước VNDCCH"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Đêm trung thu đầu tiên của nước VNDCCH"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Ngày khai trường đầu tiên của nước VNDCCH"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Phát động chống nạn thất học"
         }
       ],
-      "correctOptionId": "D",
+      "correctOptionId": "C",
       "tags": []
     },
     {
@@ -6052,30 +6455,26 @@
     {
       "id": "q-259",
       "number": 259,
-      "prompt": "Hồ Chí Minh viết “Những người trúng cử, sẽ phải ra sức giữ vững nền độc lập của Tổ quốc, ra sức ……cho đồng bào. Phải luôn luôn nhớ và thực hành câu: vì lợi nước quên lợi nhà, vì lợi ích chung quên lợi ích riêng”.",
+      "prompt": "Hồ Chí Minh viết “Những người trúng cử, sẽ phải ra sức giữ vững nền độc lập của Tổ quốc, ra sức ……cho đồng bào. Phải luôn luôn nhớ và thực hành câu: vì lợi nước quên lợi nhà, vì lợi ích chung quên lợi ích riêng”.Chọn một phương án đúng điền vào chỗ trống để hoàn thiện:",
       "options": [
         {
           "id": "A",
-          "label": "Chọn một phương án đúng điền vào chỗ trống để hoàn thiện:"
-        },
-        {
-          "id": "B",
           "label": "Làm giàu"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Giải phóng"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Tăng phúc lợi"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Mưu cầu hạnh phúc"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {
@@ -6110,9 +6509,26 @@
     {
       "id": "q-261",
       "number": 261,
-      "prompt": "Thi đua là yêu nước, yêu nước thì phải thi đua. Và những người thi đua là những người …Chọn một phương án đúng điền vào chỗ trống để hoàn thiện câu nói của Hồ Chí Minh tại Đại hội các chiến sĩ thi đua toàn quốc ngày 1/5/1952: Tích cực nhất Yêu nước nhất Xứng đáng nhất Đáng khen nhất",
-      "options": [],
-      "correctOptionId": null,
+      "prompt": "Thi đua là yêu nước, yêu nước thì phải thi đua. Và những người thi đua là những người …Chọn một phương án đúng điền vào chỗ trống để hoàn thiện câu nói của Hồ Chí Minh tại Đại hội các chiến sĩ thi đua toàn quốc ngày 1/5/1952:",
+      "options": [
+        {
+          "id": "A",
+          "label": "Tích cực nhất"
+        },
+        {
+          "id": "B",
+          "label": "Yêu nước nhất"
+        },
+        {
+          "id": "C",
+          "label": "Xứng đáng nhất"
+        },
+        {
+          "id": "D",
+          "label": "Đáng khen nhất"
+        }
+      ],
+      "correctOptionId": "B",
       "tags": []
     },
     {
@@ -6143,30 +6559,26 @@
     {
       "id": "q-263",
       "number": 263,
-      "prompt": "“Yêu Tổ quốc, yêu nhân dân phải gắn liền với yêu CNXH, vì vậy có tiến lên CNXH thì nhân dân mình mới ngày một no ấm, Tổ quốc ngày càng giàu mạnh thêm”.",
+      "prompt": "“Yêu Tổ quốc, yêu nhân dân phải gắn liền với yêu CNXH, vì vậy có tiến lên CNXH thì nhân dân mình mới ngày một no ấm, Tổ quốc ngày càng giàu mạnh thêm”.Câu nói trên của HCM phản ánh điều gì ?",
       "options": [
         {
           "id": "A",
-          "label": "Câu nói trên của HCM phản ánh điều gì ?"
-        },
-        {
-          "id": "B",
           "label": "Độc lập - tự do là quyền thiêng liêng"
         },
         {
-          "id": "C",
+          "id": "B",
           "label": "Chủ nghĩa dân tộc là động lực lớn"
         },
         {
-          "id": "D",
+          "id": "C",
           "label": "Sự kết hợp nhuần nhuyễn giữa giai cấp và dân tộc"
         },
         {
-          "id": "E",
+          "id": "D",
           "label": "Sự kết hợp nhuần nhuyễn giữa độc lập dân tộc và CNXH"
         }
       ],
-      "correctOptionId": "E",
+      "correctOptionId": "D",
       "tags": []
     },
     {

@@ -1,11 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+/* Typography tokens for DESIGN v2.0
+   Load DM Sans (Vietnamese subset) for UI; Instrument Serif is expected to be
+   self-hosted or provided — fallback to Georgia/Times. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap&subset=latin,vietnamese');
 
 :root {
-    --font-sans: 'Inter', 'Segoe UI', -apple-system, 'Be Vietnam Pro', sans-serif;
-    --type-display-size: 56px;
+    --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+    --font-sans: 'DM Sans', 'Helvetica Neue', system-ui, sans-serif;
+
+    /* Type scale tokens (values are guidance for components) */
+    --type-hero-title-size: 36px;
+    --type-panel-title-size: 15px;
+    --type-question-text-size: 17px;
+    --type-option-text-size: 14.5px;
+    --type-body-size: 14px;
+    --type-label-size: 13px;
+    --type-eyebrow-size: 11px;
 }
 
-html,
-body {
+html, body {
     font-family: var(--font-sans);
+}
+
+/* Utility classes for serif headings */
+.serif-heading {
+    font-family: var(--font-serif);
 }

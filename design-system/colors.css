@@ -1,84 +1,147 @@
 :root {
-    /* Primary gradient */
-    --color-primary-start: #6366F1;
-    --color-primary-mid: #8B5CF6;
-    --color-primary-end: #D946EF;
-    --color-primary-gradient: linear-gradient(90deg, var(--color-primary-start), var(--color-primary-mid), var(--color-primary-end));
+   /* Core color tokens (Design v2.0) — coffee / warm neutral palette */
+   --canvas: #F6F3EE;
+   /* warm beige page background */
+   --surface: #FBF7F2;
+   /* paper-like surface */
+   --surface-raised: #F8F2EC;
+   /* slightly elevated card */
+   --surface-subtle: #F0E9E2;
+   /* subtle contrast */
 
-    /* Secondary accents */
-    --color-accent-neon: #00D9FF;
-    --color-accent-hot: #FF006E;
-    --color-accent-lime: #06FFA5;
+   --ink-900: #2B1F16;
+   /* deep coffee */
+   --ink-700: #4A362B;
+   --ink-500: #7B6456;
+   --ink-300: #B8A597;
+   --ink-100: #E9DED4;
 
-    /* Surfaces */
-    --color-canvas: #0F0F1E;
-    --color-surface-light: #FFFFFF;
-    --color-surface-elevated: #F8F9FF;
-    --color-surface-subtle: #F3F4F9;
+   --accent: #6B3E26;
+   /* espresso accent */
+   --accent-mid: #8A532F;
+   /* warm caramel */
+   --accent-soft: rgba(107, 62, 38, 0.08);
+   --accent-softer: rgba(138, 83, 47, 0.04);
 
-    /* Text */
-    --color-text-primary: #0F0F1E;
-    --color-text-secondary: #6B7280;
-    --color-text-tertiary: #9CA3AF;
-    --color-text-inverse: #FFFFFF;
-    --color-text-interactive: var(--color-primary-mid);
+   --success: #2F7A4A;
+   --success-soft: rgba(47, 122, 74, 0.08);
 
-    /* Semantic */
-    --color-success: #06FFA5;
-    --color-success-soft: rgba(6, 255, 165, 0.15);
-    --color-success-glow: rgba(6, 255, 165, 0.3);
+   --danger: #A83F3F;
+   --danger-soft: rgba(168, 63, 63, 0.08);
 
-    --color-danger: #FF006E;
-    --color-danger-soft: rgba(255, 0, 110, 0.15);
-    --color-danger-glow: rgba(255, 0, 110, 0.3);
+   --border: rgba(43, 31, 22, 0.08);
+   --border-strong: rgba(43, 31, 22, 0.14);
 
-    --color-warning: #FFA500;
-    --color-warning-soft: rgba(255, 165, 0, 0.15);
+   /* Radius tokens (v2.0 names) */
+   --r-sm: 8px;
+   --r-md: 12px;
+   --r-lg: 16px;
+   --r-xl: 22px;
+   --r-pill: 9999px;
 
-    --color-info: #00D9FF;
-    --color-info-soft: rgba(0, 217, 255, 0.15);
+   /* Shadow tokens tuned for warm palette */
+   --shadow-xs: 0 1px 2px rgba(43, 31, 22, 0.04);
+   --shadow-sm: 0 4px 12px rgba(43, 31, 22, 0.06);
+   --shadow-focus: 0 0 0 3px rgba(107, 62, 38, 0.18);
 
-    /* Borders and dividers */
-    --color-border-light: rgba(99, 102, 241, 0.2);
-    --color-border-medium: rgba(99, 102, 241, 0.4);
-    --color-border-strong: rgba(99, 102, 241, 0.28);
-    --color-border-focus: #6366F1;
-    --color-divider-subtle: rgba(0, 0, 0, 0.06);
+   /* Motion tokens */
+   --motion-short: 140ms;
+   --motion-fast: 120ms;
 
-    /* Radii */
-    --radius-xs: 6px;
-    --radius-sm: 10px;
-    --radius-md: 14px;
-    --radius-lg: 18px;
-    --radius-xl: 24px;
-    --radius-pill: 9999px;
+   /* Legacy mappings for compatibility with existing CSS
+       (so existing classes continue to work) */
+   --color-canvas: var(--canvas);
+   --color-surface: var(--surface);
+   --color-surface-elevated: var(--surface-raised);
+   --color-surface-subtle: var(--surface-subtle);
 
-    /* Shadows */
-    --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.16);
-    --shadow-focus: 0 0 0 4px rgba(99, 102, 241, 0.25);
+   --color-text-primary: var(--ink-900);
+   --color-text-secondary: var(--ink-700);
+   --color-text-tertiary: var(--ink-500);
+   --color-text-inverse: #ffffff;
 
-    /* Glows */
-    --glow-success: 0 0 20px rgba(6, 255, 165, 0.4);
-    --glow-danger: 0 0 20px rgba(255, 0, 110, 0.4);
-    --glow-primary: 0 0 24px rgba(99, 102, 241, 0.35);
+   --color-border-light: var(--border);
+   --color-border-medium: rgba(43, 31, 22, 0.12);
+   --color-border-strong: var(--border-strong);
 
-    /* Motion timings */
-    --motion-quick: 100ms;
-    --motion-fast: 150ms;
-    --motion-medium: 220ms;
-    --motion-slow: 300ms;
+   --color-brand: var(--accent);
+   --color-brand-soft: var(--accent-soft);
 
-    /* Legacy aliases (map old names to new tokens to avoid massive style changes) */
-    --color-brand: var(--color-primary-mid);
-    --color-border-subtle: var(--color-border-light);
-    --color-surface: var(--color-surface-light);
-    --color-surface-inverse: var(--color-canvas);
-    --color-text-primary: var(--color-text-primary);
-    --color-text-secondary: var(--color-text-secondary);
-    --color-text-tertiary: var(--color-text-tertiary);
-    --color-success-soft: var(--color-success-soft);
-    --color-danger-soft: var(--color-danger-soft);
+   --color-success: var(--success);
+   --color-success-soft: var(--success-soft);
+   --color-danger: var(--danger);
+   --color-danger-soft: var(--danger-soft);
+
+   --radius-sm: var(--r-sm);
+   --radius-md: var(--r-md);
+   --radius-lg: var(--r-lg);
+   --radius-xl: var(--r-xl);
+   --radius-pill: var(--r-pill);
+
+   /* Keep some older shadow names mapped */
+   --shadow-md: var(--shadow-sm);
+   --shadow-lg: 0 12px 28px rgba(43, 31, 22, 0.06);
+}
+
+/* Dark theme overrides — applied when document has attribute [data-theme="dark"] */
+[data-theme="dark"] {
+   /* Muted navy base with subtle galaxy (indigo/purple) highlights */
+   --canvas: #050814;
+   /* very dark base but not pure black */
+   --surface: #0B1B2B;
+   /* deep navy */
+   --surface-raised: #0F2236;
+   /* card surface */
+   --surface-subtle: #0A1724;
+
+   /* Slightly softened text tones to avoid harsh contrast */
+   --ink-900: #E6F3FF;
+   --ink-700: #CFEBFF;
+   --ink-500: #9FD2FF;
+   --ink-300: #7CBFFF;
+   --ink-100: #5AAEFF;
+
+   /* Re-tuned accents per custom dark palette */
+   --accent: #2A7F7F;
+   /* Xanh teal — modern, strong contrast */
+   --accent-mid: #1B4F72;
+   /* Xanh petrol — classy, contrasting */
+   --cosmic: #1A2E4A;
+   /* Xanh navy — luxurious, professional */
+   --accent-soft: rgba(42, 127, 127, 0.06);
+   --cosmic-soft: rgba(26, 46, 74, 0.05);
+   --accent-gradient: linear-gradient(120deg, var(--accent), var(--accent-mid));
+
+   --success: #39C06A;
+   --success-soft: rgba(57, 192, 106, 0.06);
+
+   --danger: #FF6B6B;
+   --danger-soft: rgba(255, 107, 107, 0.06);
+
+   /* Borders tuned to new teal/petrol palette */
+   --border: rgba(42, 127, 127, 0.05);
+   --border-strong: rgba(42, 127, 127, 0.10);
+
+   /* Glow and shadow tuned for galactic feel but softened */
+   --shadow-xs: 0 1px 2px rgba(2, 6, 18, 0.55);
+   --shadow-sm: 0 8px 24px rgba(2, 6, 18, 0.5);
+   --shadow-glow: 0 24px 80px rgba(42, 127, 127, 0.04), 0 12px 48px rgba(26, 46, 74, 0.03);
+   --shadow-focus: 0 0 0 4px rgba(42, 127, 127, 0.12);
+
+   /* RGB tokens for overlays/gradients if needed */
+   --surface-raised-rgb: 15, 34, 54;
+   --surface-rgb: 11, 27, 43;
+
+   /* legacy mappings for dark */
+   --color-canvas: var(--canvas);
+   --color-surface: var(--surface);
+   --color-surface-elevated: var(--surface-raised);
+   --color-surface-subtle: var(--surface-subtle);
+   --color-text-primary: var(--ink-900);
+   --color-text-secondary: var(--ink-700);
+   --color-text-tertiary: var(--ink-500);
+   --color-border-light: var(--border);
+   --color-border-strong: var(--border-strong);
+   --color-brand: var(--accent);
+   --color-brand-soft: var(--accent-soft);
 }
